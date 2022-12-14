@@ -1,21 +1,17 @@
 import os
 
 from environs import Env
-from pathlib import Path
 
 env = Env()
 env.read_env()
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
-SECRET_KEY = 'django-insecure-h0mo**1psw1anpjm=sx5qi2ifm$uwz108(=3%xco!tdd)x9t1!'
-
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
-
+SECRET_KEY = env('SECRET_KEY', 'replace_me')
+DEBUG = env.bool('DEBUG', True)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost'])
 
 # Application definition
 
@@ -26,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'service.apps.ServiceConfig',
+    'service',
 ]
 
 MIDDLEWARE = [
@@ -59,17 +55,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'beauty_city.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+_default_sqlite_url = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+DATABASES = {"default": env.dj_db_url('DATABASE_URL', _default_sqlite_url)}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -89,8 +79,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
@@ -98,12 +87,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'service', 'static')]
-STATIC_ROOT = ''
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static/'),
+    os.path.join(BASE_DIR, 'media/')
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
