@@ -76,6 +76,11 @@ class Master(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
+    image = models.ImageField(
+        verbose_name="Аватарка",
+        blank=True,
+        null=True
+    )
 
     class Meta:
         verbose_name = 'Мастер'
@@ -88,15 +93,29 @@ class Master(models.Model):
 class User(models.Model):
     first_name = models.CharField(
         verbose_name="Имя клиента",
-        max_length=200
+        max_length=200,
+        blank=True,
+        null=True
     )
     second_name = models.CharField(
         verbose_name="Фамилия клиента",
-        max_length=200
+        max_length=200,
+        blank=True,
+        null=True
     )
     phone_number = PhoneNumberField(
-        verbose_name='Номер телефона клиента',
-        region='RU'
+        verbose_name="Номер телефона клиента",
+        region="RU"
+    )
+    passcode = models.PositiveIntegerField(
+        verbose_name="Код проверки",
+        blank=True,
+        null=True
+    )
+    image = models.ImageField(
+        verbose_name="Аватарка",
+        blank=True,
+        null=True
     )
 
     class Meta:
@@ -105,6 +124,10 @@ class User(models.Model):
 
     def __str__(self):
         return self.first_name
+
+    def set_passcode(self):
+        self.passcode = 7777
+        # TODO create passcode logic
 
 
 class Timeslot(models.Model):
