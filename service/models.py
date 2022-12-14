@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -48,3 +49,9 @@ class Timeslot(models.Model):
     day = models.DateField(verbose_name='Дата записи')
     time = models.TimeField(verbose_name='Время записи')
 
+
+class Order(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Клиент')
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, verbose_name='Услуга')
+    salon = models.ForeignKey(Salon, on_delete=models.CASCADE, verbose_name='Салон')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='Создан в')
