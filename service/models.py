@@ -105,7 +105,8 @@ class User(models.Model):
     )
     phone_number = PhoneNumberField(
         verbose_name="Номер телефона клиента",
-        region="RU"
+        region="RU",
+        unique=True
     )
     passcode = models.PositiveIntegerField(
         verbose_name="Код проверки",
@@ -123,7 +124,7 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.first_name
+        return f"{self.phone_number}"
 
     def set_passcode(self):
         self.passcode = 7777
