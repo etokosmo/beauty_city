@@ -182,3 +182,25 @@ class Order(models.Model):
         default=timezone.now,
         verbose_name='Создан в'
     )
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        verbose_name='Клиент'
+    )
+    text = models.TextField(
+        verbose_name='Текст отзыва',
+        blank=True
+    )
+    master = models.ForeignKey(
+        Master, on_delete=models.CASCADE,
+        verbose_name='Мастер'
+    )
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return f"{self.user}:{self.text}"
