@@ -26,6 +26,7 @@ class Salon(models.Model):
         verbose_name="Адрес салона",
         max_length=200
     )
+    image = models.ImageField(verbose_name='Аватарка салона', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Салон'
