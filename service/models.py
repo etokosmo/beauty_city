@@ -26,6 +26,7 @@ class Salon(models.Model):
         verbose_name="Адрес салона",
         max_length=200
     )
+    image = models.ImageField(verbose_name='Аватарка салона', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Салон'
@@ -47,6 +48,7 @@ class Service(models.Model):
         ServiceCategory,
         on_delete=models.CASCADE,
         verbose_name="Категория услуги",
+        related_name='services'
     )
 
     class Meta:
@@ -105,7 +107,8 @@ class User(models.Model):
     )
     phone_number = PhoneNumberField(
         verbose_name="Номер телефона клиента",
-        region="RU"
+        region="RU",
+        unique=True
     )
     passcode = models.PositiveIntegerField(
         verbose_name="Код проверки",
@@ -123,7 +126,7 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return self.first_name
+        return f"{self.phone_number}"
 
     def set_passcode(self):
         self.passcode = 7777
@@ -180,3 +183,25 @@ class Order(models.Model):
         default=timezone.now,
         verbose_name='Создан в'
     )
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        verbose_name='Клиент'
+    )
+    text = models.TextField(
+        verbose_name='Текст отзыва',
+        blank=True
+    )
+    master = models.ForeignKey(
+        Master, on_delete=models.CASCADE,
+        verbose_name='Мастер'
+    )
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return f"{self.user}:{self.text}"
