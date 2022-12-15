@@ -398,8 +398,8 @@ $(document).ready(function() {
 	    var form_data = $('.authPopup__form').serialize().split('&');
 	    var csrf = form_data[0].split('=')[1]
 	    var tel = form_data[1].split('=')[1]
-	    console.log(csrf);
-	    console.log(tel);
+//	    console.log(csrf);
+//	    console.log(tel);
         fetch('/set_passcode/', {
           method: 'POST',
           body: JSON.stringify({"tel": tel}),
@@ -409,7 +409,7 @@ $(document).ready(function() {
             }
         });
 		$('#confirmModal').arcticmodal();
-		console.log(document.cookie.match(/user_id=(.+?)(;|$)/)[1]);
+//		console.log(document.cookie.match(/user_id=(.+?)(;|$)/)[1]);
 		return false
 	})
 

@@ -81,9 +81,15 @@
 					<div class="col-2 col-md-2 col-lg-3">
 						<div class="header__block">
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
+						{% if user %}
+							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
+							<div class="menu__item_link">Личный кабинет</div>
+							<div class="menu__item_link">Выйти</div>
+						{% else %}
 						<div class="header__block_auth">
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
 							<span class="header__block_auth__intro">Войти</span>
+							{% endif %}
 						</div>
 					</div>
 					</div>
@@ -721,9 +727,18 @@
 <script>
 		function check() {
 			if ((!!firstvalue) & (!!secondvalue) & (!!thirdvalue) & (!!fourthvalue)) {
-				console.log(123)
 				var code = firstvalue + secondvalue + thirdvalue + fourthvalue
 				console.log(code)
+				fetch('/verify_user/', {
+				  method: 'POST',
+				  body: JSON.stringify({"passcode": code}),
+				  headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+					'X-CSRFToken': '{{csrf_token}}',
+            		}
+        		});
+        		window.location.replace("/");
+
 			}
 		}
 </script>

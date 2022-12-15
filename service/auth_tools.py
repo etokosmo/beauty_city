@@ -1,14 +1,15 @@
-from base64 import b64encode, b64decode
-from django.shortcuts import render
 import binascii
 import hashlib
 import hmac
 import json
-from .models import User
-from django.shortcuts import get_object_or_404
-from lib2to3.pgen2.token import OP
+from base64 import b64encode, b64decode
 from typing import Optional
+
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+
+from .models import User
 
 
 def sign_data(data: str) -> str:
@@ -74,3 +75,20 @@ def set_passcode(request):
     response.set_cookie('user_id', user.pk)
     return response
 
+
+def verify_user(request):
+    response = json.loads(request.body)
+    user_passcode = int(response.get('passcode'))
+    user_id = request.COOKIES.get('user_id')
+    user = get_object_or_404(User, pk=user_id)
+    user_phone_number = f"{user.phone_number}"
+    if user.passcode == user_passcode:
+        user_signed = b64encode(
+            user_phone_number.encode()).decode() + '.' + sign_data(
+            user_phone_number)
+        context = {'user': user}
+        response = render(request, 'index.html', context)
+        response.set_cookie('user', user_signed)
+        return response
+    context = {}
+    return render(request, 'index.html', context)
