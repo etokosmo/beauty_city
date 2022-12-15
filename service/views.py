@@ -14,13 +14,13 @@ def service_page(request):
         user_phone_number)
 
     if not valid_user_phone_number:
-        response = render(request, 'index.html', context)
+        response = render(request, 'service.html', context)
         response.set_cookie('user_phone_number', None)
         return response
     try:
         user = User.objects.get(phone_number=valid_user_phone_number)
     except User.DoesNotExist:
-        return render(request, 'index.html', context)
+        return render(request, 'service.html', context)
 
     salons = Salon.objects.all()
     categories = ServiceCategory.objects.prefetch_related('services')
