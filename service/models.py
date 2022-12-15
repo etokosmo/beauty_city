@@ -48,6 +48,7 @@ class Service(models.Model):
         ServiceCategory,
         on_delete=models.CASCADE,
         verbose_name="Категория услуги",
+        related_name='services'
     )
 
     class Meta:
