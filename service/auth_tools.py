@@ -6,8 +6,7 @@ from base64 import b64encode, b64decode
 from typing import Optional
 
 from django.conf import settings
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 
 from .models import User
 
@@ -34,33 +33,6 @@ def get_username_from_signed_string(username_signed: str) -> Optional[str]:
         return username
 
 
-def index_page(request):
-    user_phone_number = request.COOKIES.get('user_phone_number')
-    context = {}
-    if user_phone_number is None:
-        return render(request, 'index.html', context)
-
-    valid_user_phone_number = get_username_from_signed_string(
-        user_phone_number)
-
-    if not valid_user_phone_number:
-        request.session['user_phone_number'] = None
-        return render(request, 'index.html', context)
-
-    user = get_object_or_404(User, phone_number=valid_user_phone_number)
-    context = {'user': user}
-    return render(request, 'index.html', context)
-
-
-def login(request):
-    user_phone_number = request.POST['user_phone_number']
-    user = get_object_or_404(User, phone_number=user_phone_number)
-    user_phone_number_signed = f'{b64encode(user_phone_number.encode()).decode()}.{sign_data(user_phone_number)}'
-    request.session.setdefault('user_phone_number', user_phone_number_signed)
-    context = {'user': user}
-    return render(request, 'index.html', context)
-
-
 def set_passcode(request):
     response = json.loads(request.body)
     user_phone_number = response.get('tel')
@@ -70,7 +42,7 @@ def set_passcode(request):
         phone_number=user_phone_number,
         passcode=7878
     )
-    context = {'user': user}
+    context = {'client': user}
     response = render(request, 'index.html', context)
     response.set_cookie('user_id', user.pk)
     return response
@@ -86,9 +58,23 @@ def verify_user(request):
         user_signed = b64encode(
             user_phone_number.encode()).decode() + '.' + sign_data(
             user_phone_number)
-        context = {'user': user}
-        response = render(request, 'index.html', context)
-        response.set_cookie('user', user_signed)
-        return response
-    context = {}
-    return render(request, 'index.html', context)
+
+        response_data = {
+            'result': 'success',
+            'user_phone_number': user_signed
+        }
+        return HttpResponse(json.dumps(response_data),
+                            content_type="application/json")
+
+    response_data = {
+        'result': 'failed',
+        'user_phone_number': ''
+    }
+    return HttpResponse(json.dumps(response_data),
+                        content_type="application/json")
+
+
+def logout_user(request):
+    response = redirect('service:index_page')
+    response.delete_cookie('user_phone_number')
+    return response

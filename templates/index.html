@@ -81,22 +81,23 @@
 					<div class="col-2 col-md-2 col-lg-3">
 						<div class="header__block">
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
-						{% if user %}
+						{% if client %}
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
-							<div class="menu__item_link">Личный кабинет</div>
-							<div class="menu__item_link">Выйти</div>
+							<a href="{% url 'service:account' %}" class="menu__item_link">Личный кабинет</a>
+							<span class="menu__item_link" style="margin-left: 20px"></span>
+							<a href="{% url 'service:logout_user' %}" class="menu__item_link">Выйти</a>
 						{% else %}
 						<div class="header__block_auth">
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
 							<span class="header__block_auth__intro">Войти</span>
-							{% endif %}
 						</div>
+                            {% endif %}
 					</div>
 					</div>
 				</div>
-				
-				
-				
+
+
+
 			</div>
 		</div>
 	</header>
@@ -195,7 +196,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row servicesSlider">
 					<div class="col-md-3">
 						<div class="cardBlock services__block">
@@ -251,7 +252,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 
 				</div>
 			</div>
@@ -271,7 +272,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row mastersSlider">
 					<div class="col-md-3">
 						<div class="cardBlock masters__block">
@@ -411,8 +412,8 @@
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 
 				</div>
 			</div>
@@ -433,7 +434,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row reviewsSlider">
 					<div class="col-md-3">
 						<div class="reviews__block">
@@ -505,9 +506,9 @@
 							<div class="reviews__block_date">1 октября 2022</div>
 						</div>
 					</div>
-					
-					
-					
+
+
+
 
 				</div>
 			</div>
@@ -527,7 +528,7 @@
 									<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required>
 								</div>
 							</div>
-							
+
 							<textarea name="contactsTextarea" class="contacts__form_textarea" placeholder="Вопрос(необязательно)"></textarea>
 							<div class="contacts__form_checkboxBlock fic">
 								<input type="checkbox" class="contacts__form_checkbox" checked>
@@ -610,9 +611,9 @@
 					<div class="footer__contact">
 						<div class="row">
 							<div class="col-md-4">
-								
+
 									<div class="footer__data">с 10:00 до 20:00  без выходных</div>
-									
+
 							</div>
 							<div class="col-md-3">
 								<a href="tel:+79179023800" class="contacts__info_tel">+7 (917) 902 38 00</a>
@@ -649,11 +650,11 @@
 								</div>
 							</div>
 						</div>
-						
-						
-						
+
+
+
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
@@ -687,6 +688,7 @@
 				<input type="text" name="num2" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='secondvalue_eventForm(this.value)'>
 				<input type="text" name="num3" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='thirdvalue_eventForm(this.value)'>
 				<input type="text" name="num4" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='fourthvalue_eventForm(this.value)'>
+				<button id="myButton">Подтвердить</button>
 			</div>
 			<div class="confirmPopup__sms">Если SMS не пришло вы можете <a href="#" class="popup__link">запросить код повторно</a></div>
 			<div class="confirmPopup__changeNumber">
@@ -708,19 +710,16 @@
 	var fourthvalue = null;
 		function firstvalue_eventForm(value) {
 		  firstvalue = value;
-		  check();
 		}
 		function secondvalue_eventForm(value) {
 		  secondvalue = value;
-		  check();
 		}
 		function thirdvalue_eventForm(value) {
 		  thirdvalue = value;
-		  check();
 		}
 		function fourthvalue_eventForm(value) {
 		  fourthvalue = value;
-		  check();
+
 		}
 
 	</script>
@@ -729,18 +728,60 @@
 			if ((!!firstvalue) & (!!secondvalue) & (!!thirdvalue) & (!!fourthvalue)) {
 				var code = firstvalue + secondvalue + thirdvalue + fourthvalue
 				console.log(code)
-				fetch('/verify_user/', {
+				let response = fetch('/verify_user/', {
 				  method: 'POST',
 				  body: JSON.stringify({"passcode": code}),
 				  headers: {
 					'Content-type': 'application/json; charset=UTF-8',
 					'X-CSRFToken': '{{csrf_token}}',
             		}
-        		});
-        		window.location.replace("/");
-
-			}
+        		})
+        		.then(r =>  r.json().then(data => ({result: data['result'], jwt: data['user_phone_number']})))
+                .then(obj => setCookie('user_phone_number',obj['jwt']));
+			} return true
+			return false
 		}
+</script>
+<script>
+	var myBtn = document.getElementById('myButton');
+
+	myBtn.addEventListener('click', function(event) {
+		a = check();
+		if (a === false) {
+		    alert('Заполните все поля!');
+		} else {
+			jwt = getCookie('user_phone_number');
+			if (jwt === null) {
+           		setTimeout(() => {  location.reload(true); }, 100);
+           	} else {
+           	alert('Неправильный код');
+           	setTimeout(() => {  location.reload(true); }, 100);
+           	 }
+        }
+
+
+	});
+</script>
+<script>
+    function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
 </script>
 </body>
 </html>
