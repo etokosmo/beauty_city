@@ -210,3 +210,20 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.user}:{self.text}"
+
+
+class Document(models.Model):
+    title = models.CharField(
+        verbose_name="Название документа",
+        max_length=200,
+    )
+    file = models.FileField(
+        verbose_name="Файл"
+    )
+
+    class Meta:
+        verbose_name = 'Документ'
+        verbose_name_plural = 'Документы'
+
+    def __str__(self):
+        return self.title

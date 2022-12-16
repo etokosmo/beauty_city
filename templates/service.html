@@ -299,13 +299,13 @@
 			<form action="" class="authPopup__form">
 				{% csrf_token %}
 				<div class="contacts__form_inputBlock">
-					<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
+					<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7 (999) 999-99-99" required="">
 				</div>
 				<div class="contacts__form_checkboxBlock fic">
-					<input type="checkbox" class="contacts__form_checkbox" checked="">
-					<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с политикой конфидециоальности</span>
+					<input type="checkbox" class="contacts__form_checkbox" checked="" onchange="document.getElementById('submitFF').disabled = !this.checked">
+					<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с <a href="{{privacy_file.file.url}}" target="_blank">политикой конфиденциальности</a></span>
 				</div>
-				<button type="submit" class="popup__btn authPopup__btn">Отправить</button>
+				<button type="submit" class="popup__btn authPopup__btn" id="submitFF">Отправить</button>
 			</form>
 		</div>
 	</div>

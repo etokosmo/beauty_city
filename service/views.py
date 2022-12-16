@@ -1,7 +1,7 @@
 from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404
 from .auth_tools import get_user
-from .models import Salon, ServiceCategory, Master, Timeslot
+from .models import Salon, ServiceCategory, Master, Timeslot, Document
 
 
 def service_page(request):
@@ -9,6 +9,7 @@ def service_page(request):
     salons = Salon.objects.all()
     categories = ServiceCategory.objects.prefetch_related('services')
     masters = Master.objects.all()
+    privacy_file = get_object_or_404(Document, title='privacy_polite')
 
     context = {'salons': [
         {
@@ -30,7 +31,8 @@ def service_page(request):
 
             }
             for master in masters],
-        'client': user
+        'client': user,
+        'privacy_file': privacy_file,
     }
 
     return render(request, 'service.html', context)
@@ -38,7 +40,11 @@ def service_page(request):
 
 def index_page(request):
     user = get_user(request)
-    context = {'client': user}
+    privacy_file = get_object_or_404(Document, title='privacy_polite')
+    context = {
+        'client': user,
+        'privacy_file': privacy_file,
+    }
     return render(request, 'index.html', context)
 
 

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import ServiceCategory, Salon, Service, Master, User, Timeslot, \
-    Order
+    Order, Document
 
 
 def get_image_preview(self, obj):
@@ -76,3 +76,8 @@ class OrderAdmin(admin.ModelAdmin):
         'service',
         'salon',
     ]
+
+
+@admin.register(Document)
+class DocumentAdmin(admin.ModelAdmin):
+    pass
