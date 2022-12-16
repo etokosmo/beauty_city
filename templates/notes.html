@@ -130,11 +130,13 @@
 					<div class="col-3 col-md-2 col-lg-3">
 						<div class="header__block">
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
-						<div class="header__block_auth">
-							<img src="{{client_info.image}}" alt="account" class="header__account_img">
-							<span class="header__block_auth__intro">
-								{{client_info.first_name}} {{client_info.second_name}}</span>
-						</div>
+							<div class="header__block_auth">
+								<img src="{{client_info.image}}" alt="account" class="header__account_img">
+								<span class="header__block_auth__intro">
+									{{client_info.first_name}} {{client_info.second_name}}</span>
+							</div>
+							<span class="menu__item_link" style="margin-left: 50px"></span>
+							<a href="{% url 'service:logout_user' %}" class="menu__item_link">Выйти</a>
 					</div>
 					</div>
 				</div>

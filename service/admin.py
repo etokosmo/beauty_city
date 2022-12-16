@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import ServiceCategory, Salon, Service, Master, User, Timeslot, Order
+from .models import ServiceCategory, Salon, Service, Master, User, Timeslot, \
+    Order
 
 
 def get_image_preview(self, obj):
@@ -9,6 +10,7 @@ def get_image_preview(self, obj):
         return 'нет картинки'
     return format_html('<img src="{url}" style="max-height: 100px;"/>',
                        url=obj.image.url)
+
 
 @admin.register(ServiceCategory)
 class ServiceCategoryAdmin(admin.ModelAdmin):
@@ -44,6 +46,7 @@ class UserAdmin(admin.ModelAdmin):
     get_image_preview = get_image_preview
 
     list_display = [
+        'phone_number',
         'id',
         'first_name',
         'second_name',
@@ -63,6 +66,7 @@ class TimeslotAdmin(admin.ModelAdmin):
         'master',
         'salon',
     ]
+
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
