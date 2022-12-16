@@ -2,6 +2,7 @@ import binascii
 import hashlib
 import hmac
 import json
+import random
 from base64 import b64encode, b64decode
 from typing import Optional
 from urllib.parse import unquote
@@ -37,7 +38,7 @@ def get_username_from_signed_string(username_signed: str) -> Optional[str]:
 
 
 def create_passcode():
-    return 7878
+    return random.randint(1000, 9999)
 
 
 def set_passcode(request):
