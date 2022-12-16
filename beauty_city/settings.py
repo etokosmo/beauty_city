@@ -13,6 +13,9 @@ SECRET_KEY = env('SECRET_KEY', 'replace_me')
 DEBUG = env.bool('DEBUG', True)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost'])
 
+TELEGRAM_ACCESS_TOKEN = env('TELEGRAM_ACCESS_TOKEN')
+TELEGRAM_CHAT_ID = env('TELEGRAM_CHAT_ID')
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -6,8 +6,10 @@ from base64 import b64encode, b64decode
 from typing import Optional
 from urllib.parse import unquote
 
+import requests
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from requests.exceptions import HTTPError, ConnectionError
 
 from .models import User
 
@@ -34,17 +36,41 @@ def get_username_from_signed_string(username_signed: str) -> Optional[str]:
         return username
 
 
+def create_passcode():
+    return 7878
+
+
 def set_passcode(request):
     response = json.loads(request.body)
     user_phone_number = unquote(response.get('tel'))
 
     if not user_phone_number:
         return render(request, 'index.html')
+
+    _passcode = create_passcode()
+    _token = settings.TELEGRAM_ACCESS_TOKEN
+    _chat_id = settings.TELEGRAM_CHAT_ID
+
     user, created = User.objects.get_or_create(
         phone_number=user_phone_number,
     )
-    user.passcode = 7878
+
+    message = f"Пароль для пользователя {user_phone_number}:\n{_passcode}"
+
+    user.passcode = _passcode
     user.save()
+
+    url = f"https://api.telegram.org/bot{_token}/sendMessage?chat_id={_chat_id}&text={message}"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except HTTPError:
+        pass
+        # TODO create failed log
+    except ConnectionError:
+        pass
+        # TODO create failed log
+
     context = {'client': user}
     response = render(request, 'index.html', context)
     response.set_cookie('user_id', user.pk)
