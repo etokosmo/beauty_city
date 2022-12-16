@@ -29,6 +29,11 @@ class Salon(models.Model):
     image = models.ImageField(verbose_name='Аватарка салона', blank=True,
                               null=True)
 
+    categories = models.ManyToManyField(
+        ServiceCategory, verbose_name='Категории салона',
+        related_name='salons'
+    )
+
     class Meta:
         verbose_name = 'Салон'
         verbose_name_plural = 'Салоны'
@@ -80,7 +85,8 @@ class Master(models.Model):
     salon = models.ForeignKey(
         Salon,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        related_name='masters'
     )
     image = models.ImageField(
         verbose_name="Аватарка",
