@@ -490,17 +490,20 @@ function maskPhone(selector, masked = '7-___-___-__-__') {
   return await response.json();
 }
 
-async function foobar(){
+async function foobar() {
     let data = await fetchAsync('http://127.0.0.1:8000/choose_salons/')
 
     console.log(data)
     const el = document.getElementById('salons');
-    el.innerHTML = '<div class="accordion__block fic"><div class="accordion__block_intro">' + data[2].fields.title + '</div><div class="accordion__block_address">Адрес фигни</div></div>'
+    
+    el.innerHTML = ''
+    data.forEach(function(item, i, data){
+        let div = document.createElement('div');
+        div.innerHTML = '<div class="accordion__block fic"><div class="accordion__block_intro">' + item.fields.title + '</div><div class="accordion__block_address">' + item.fields.address + '</div></div>'
+        el.append(div)
+    })
 }
-
 choose_master.addEventListener("click", foobar);
-    {#const el = document.getElementById('salons');#}
-    {#el.innerHTML = '<div class="accordion__block fic"><div class="accordion__block_intro ">Фигня</div><div class="accordion__block_address">Адрес фигни</div></div>'#}
-</script>s
+</script>
 </body>
 </html>
