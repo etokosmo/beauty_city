@@ -637,6 +637,214 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 50,
+  "fields": {
+    "action_time": "2022-12-16T07:28:56.435Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "6",
+    "object_repr": "%2B79234566332",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 51,
+  "fields": {
+    "action_time": "2022-12-16T10:07:20.194Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "BeautyCity Красная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 52,
+  "fields": {
+    "action_time": "2022-12-16T10:07:28.189Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "BeautyCity Ленина",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 53,
+  "fields": {
+    "action_time": "2022-12-16T10:07:38.422Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "BeautyCity Пушкинская",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 54,
+  "fields": {
+    "action_time": "2022-12-16T10:10:36.892Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "Вечерний макияж",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 55,
+  "fields": {
+    "action_time": "2022-12-16T10:10:44.815Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "7",
+    "object_repr": "Свадебный макияж",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 56,
+  "fields": {
+    "action_time": "2022-12-16T10:10:54.679Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "Дневной макияж",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 57,
+  "fields": {
+    "action_time": "2022-12-16T10:12:20.496Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "5",
+    "object_repr": "Наращивание ногтей",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 58,
+  "fields": {
+    "action_time": "2022-12-16T10:12:30.072Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "4",
+    "object_repr": "Педикюр",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 59,
+  "fields": {
+    "action_time": "2022-12-16T10:12:41.054Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "3",
+    "object_repr": "Маникюр. Классический",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 60,
+  "fields": {
+    "action_time": "2022-12-16T10:12:53.489Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "Укладка волос",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 61,
+  "fields": {
+    "action_time": "2022-12-16T10:13:05.354Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "Окрашивание волос",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 62,
+  "fields": {
+    "action_time": "2022-12-16T11:24:29.059Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "1",
+    "object_repr": "+79336577474:Отличное место для красоты, очень доброжелательный и отзывчивый персонал, девочки заботливые, аккуратные и большие профессионалы. Посещаю салон с самого начала, но он не теряет своей прив",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 63,
+  "fields": {
+    "action_time": "2022-12-16T11:27:46.621Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "2",
+    "object_repr": "+79883455663:Мне всё лень было отзыв писать, но вот \"руки дошли\". Несколько раз здесь стриглась, мастера звали, кажется, Катя. Все было отлично, приятная молодая женщина и по стрижке вопросов не было)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 64,
+  "fields": {
+    "action_time": "2022-12-16T11:28:24.623Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "3",
+    "object_repr": "+79883455663:Мне всё лень было отзыв писать, но вот \"руки дошли\". Несколько раз здесь стриглась, мастера звали, кажется, Катя. Все было отлично, приятная молодая женщина и по стрижке вопросов не было)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 65,
+  "fields": {
+    "action_time": "2022-12-16T11:38:41.023Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "2",
+    "object_repr": "+79883455663:Делала процедуру микротоки у мастера Светланы . Светлана внимательная, приветливая, ненавязчивая. Рекомендую и мастера, и процедуру. Еще делала бровки у Татьяны , я в восторге , брови про",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0422\\u0435\\u043a\\u0441\\u0442 \\u043e\\u0442\\u0437\\u044b\\u0432\\u0430\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -1145,7 +1353,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$320000$fnnbgF7ZNFbh0qofpgIGSB$xX2tqguM9Osqiaj268wFkkcR1X/6SQaae0OpzBMFN9A=",
-    "last_login": "2022-12-15T19:02:27.381Z",
+    "last_login": "2022-12-16T07:26:51.612Z",
     "is_superuser": true,
     "username": "user",
     "first_name": "",
@@ -1312,6 +1520,22 @@
 },
 {
   "model": "sessions.session",
+  "pk": "sy14b6j10ld8naue9i4c6pkin6ndpm6t",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrz9oOJT1nsNY_HEC2FCcV4u4QKQW0b2bei3na1uq3kRc_J3Zmgp1-t0DxkdsO0p3arfPY27rMge8KP-jg157y83K4fweVRv3WCk1xNhSAAFqqQAKyMxItpILOqlIgoS6EcSI0akrZETjjBEnUVgb2_gDNxzdC:1p657L:p_QGY1-YIB2UBhZACCZl7vAMMImtqBiXaDaGv0lc-iQ",
+    "expire_date": "2022-12-30T07:26:51.618Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vjtrbe1j61mimrli99re7c0bkehiicgn",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrz9oOJT1nsNY_HEC2FCcV4u4QKQW0b2bei3na1uq3kRc_J3Zmgp1-t0DxkdsO0p3arfPY27rMge8KP-jg157y83K4fweVRv3WCk1xNhSAAFqqQAKyMxItpILOqlIgoS6EcSI0akrZETjjBEnUVgb2_gDNxzdC:1p650p:6ReFUlyWrXMQSXEYuy-OfI3VDt2KrPtppVj8W7ngo1A",
+    "expire_date": "2022-12-30T07:20:07.096Z"
+  }
+},
+{
+  "model": "sessions.session",
   "pk": "z0ls8x9fqn85ebsfnjz4uu3nx6hzvnmp",
   "fields": {
     "session_data": ".eJxVjDsOwjAQBe_iGllr409MSZ8zRLvrNQ6gRIqTCnF3iJQC2jcz76UG3NY6bE2WYczqoow6_W6E_JBpB_mO023WPE_rMpLeFX3Qpvs5y_N6uH8HFVv91tGTR3CdNSVByCBR2DAYLl2Ws4sG2QSmxCmCL4XEdRQpJIvWugBevT_jgDfL:1p5YCn:iSoStpClLbvvHRMAGzs07sninqANK7MPuAeJfT7F988",
@@ -1345,7 +1569,7 @@
   "fields": {
     "title": "BeautyCity Пушкинская",
     "address": "ул. Пушкинская, д. 78А",
-    "image": ""
+    "image": "Пушкинская.jpeg"
   }
 },
 {
@@ -1354,7 +1578,7 @@
   "fields": {
     "title": "BeautyCity Ленина",
     "address": "ул. Ленина, д. 211",
-    "image": ""
+    "image": "Ленина.jpeg"
   }
 },
 {
@@ -1363,7 +1587,7 @@
   "fields": {
     "title": "BeautyCity Красная",
     "address": "ул. Красная, д. 10",
-    "image": ""
+    "image": "Красная.jpeg"
   }
 },
 {
@@ -1372,7 +1596,8 @@
   "fields": {
     "title": "Окрашивание волос",
     "price": 5000,
-    "category": 1
+    "category": 1,
+    "image": "Укладка_волос2.jpeg"
   }
 },
 {
@@ -1381,7 +1606,8 @@
   "fields": {
     "title": "Укладка волос",
     "price": 1500,
-    "category": 1
+    "category": 1,
+    "image": "Укладка_волос.jpeg"
   }
 },
 {
@@ -1390,7 +1616,8 @@
   "fields": {
     "title": "Маникюр. Классический",
     "price": 1400,
-    "category": 2
+    "category": 2,
+    "image": "Маникюр._Классический._Гель.jpeg"
   }
 },
 {
@@ -1399,7 +1626,8 @@
   "fields": {
     "title": "Педикюр",
     "price": 1400,
-    "category": 2
+    "category": 2,
+    "image": "Педикюр.jpeg"
   }
 },
 {
@@ -1408,7 +1636,8 @@
   "fields": {
     "title": "Наращивание ногтей",
     "price": 1400,
-    "category": 2
+    "category": 2,
+    "image": "наращивание_ногтей.jpeg"
   }
 },
 {
@@ -1417,7 +1646,8 @@
   "fields": {
     "title": "Дневной макияж",
     "price": 1400,
-    "category": 3
+    "category": 3,
+    "image": "Дневной_макияж.jpeg"
   }
 },
 {
@@ -1426,7 +1656,8 @@
   "fields": {
     "title": "Свадебный макияж",
     "price": 3000,
-    "category": 3
+    "category": 3,
+    "image": "свадебный_макияж.jpeg"
   }
 },
 {
@@ -1435,7 +1666,8 @@
   "fields": {
     "title": "Вечерний макияж",
     "price": 2000,
-    "category": 3
+    "category": 3,
+    "image": "вечерний_макияж.jpeg"
   }
 },
 {
@@ -1676,6 +1908,17 @@
   }
 },
 {
+  "model": "service.user",
+  "pk": 7,
+  "fields": {
+    "first_name": "undefined",
+    "second_name": "username",
+    "phone_number": "%2B79234566332",
+    "passcode": 7878,
+    "image": "acc.svg"
+  }
+},
+{
   "model": "service.timeslot",
   "pk": 1,
   "fields": {
@@ -1733,6 +1976,33 @@
     "salon": 1,
     "day": "2022-12-17",
     "time": "07:42:00"
+  }
+},
+{
+  "model": "service.comment",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "text": "Отличное место для красоты, очень доброжелательный и отзывчивый персонал, девочки заботливые, аккуратные и большие профессионалы. Посещаю салон с самого начала, но он не теряет своей привлекательности, как в обслуживании.",
+    "master": 1
+  }
+},
+{
+  "model": "service.comment",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "text": "Делала процедуру микротоки у мастера Светланы . Светлана внимательная, приветливая, ненавязчивая. Рекомендую и мастера, и процедуру. Еще делала бровки у Татьяны , я в восторге , брови просто идеально сдеданы",
+    "master": 7
+  }
+},
+{
+  "model": "service.comment",
+  "pk": 3,
+  "fields": {
+    "user": 2,
+    "text": "Мне всё лень было отзыв писать, но вот \"руки дошли\". Несколько раз здесь стриглась, мастера звали, кажется, Катя. Все было отлично, приятная молодая женщина и по стрижке вопросов не было)",
+    "master": 1
   }
 }
 ]
