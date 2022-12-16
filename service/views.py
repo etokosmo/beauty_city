@@ -1,9 +1,11 @@
 from django.core import serializers
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
 from .auth_tools import get_user
-from .models import Salon, ServiceCategory, Master, Timeslot, Service, Comment, Document
+from .forms import UserProfileForm
+from .models import Salon, ServiceCategory, Master, Timeslot, Service, \
+    Document, Comment
 
 
 def service_page(request):
@@ -13,13 +15,20 @@ def service_page(request):
     masters = Master.objects.all()
     privacy_file = get_object_or_404(Document, title='privacy_polite')
 
-    context = {'salons': [
-        {
-            'title': salon.title,
-            'address': salon.address,
-            'image': salon.image
-        }
-        for salon in salons],
+    context = {
+        'client_info':
+            {
+                'first_name': user.first_name,
+                'second_name': user.second_name,
+                'image': user.image.url
+            },
+        'salons': [
+            {
+                'title': salon.title,
+                'address': salon.address,
+                'image': salon.image
+            }
+            for salon in salons],
         'categories': [
             {
                 'title': category.title,
@@ -49,6 +58,12 @@ def index_page(request):
     comments = Comment.objects.all()
 
     context = {
+        'client_info':
+            {
+                'first_name': user.first_name,
+                'second_name': user.second_name,
+                'image': user.image.url
+            },
         'privacy_file': privacy_file,
         'client': user,
         'services': [
@@ -98,12 +113,13 @@ def servicefinally_page(request):
     timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
 
-    order = {'client_info':
-        {
-            'first_name': user.first_name,
-            'second_name': user.second_name,
-            'image': user.image.url
-        },
+    order = {
+        'client_info':
+            {
+                'first_name': user.first_name,
+                'second_name': user.second_name,
+                'image': user.image.url
+            },
         'timeslots': [
             {
                 'id': timeslot.id,
@@ -132,11 +148,12 @@ def note_page(request):
     timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
 
-    order = {'client_info': {
-        'first_name': user.first_name,
-        'second_name': user.second_name,
-        'image': request.build_absolute_uri(user.image.url)
-    },
+    order = {
+        'client_info': {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': request.build_absolute_uri(user.image.url)
+        },
         'timeslots': [
             {
                 'id': timeslot.id,
@@ -193,7 +210,44 @@ def get_masters(request):
         masters = masters.filter(salon__title=salon)
     if 'service' in request.GET.keys():
         service = request.GET['service']
-        masters_id = Service.objects.filter(title=service).first().masters.values_list('id', flat=True)
+        masters_id = Service.objects.filter(
+            title=service).first().masters.values_list('id', flat=True)
         masters = masters.filter(id__in=masters_id)
     data = serializers.serialize('json', masters)
     return HttpResponse(data, content_type='application/json')
+
+
+def profile_page(request):
+    user = get_user(request)
+    if not user:
+        return render(request, 'index.html')
+    form = UserProfileForm(
+        request.POST or None,
+        request.FILES or None,
+        initial={
+            "first_name": user.first_name,
+            "second_name": user.second_name,
+            "image": user.image
+        })
+    if form.is_valid():
+        first_name = form.cleaned_data.get("first_name")
+        second_name = form.cleaned_data.get("second_name")
+        image = form.cleaned_data.get("image")
+
+        user.first_name = first_name
+        user.second_name = second_name
+        user.image = image
+        user.save()
+        return redirect('service:note_page')
+
+    context = {
+        'client_info': {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': request.build_absolute_uri(user.image.url)
+        },
+        'form': form,
+        'client': user
+    }
+
+    return render(request, 'profile.html', context=context)

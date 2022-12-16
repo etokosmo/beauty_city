@@ -37,11 +37,13 @@ def get_username_from_signed_string(username_signed: str) -> Optional[str]:
         return username
 
 
-def create_passcode():
+def create_passcode() -> int:
+    """Create random passcode"""
     return random.randint(1000, 9999)
 
 
 def set_passcode(request):
+    """Set passcode to User"""
     response = json.loads(request.body)
     user_phone_number = unquote(response.get('tel'))
 
@@ -110,7 +112,7 @@ def logout_user(request):
     return response
 
 
-def get_user(request):
+def get_user(request) -> Optional[User]:
     user_phone_number = request.COOKIES.get('user_phone_number')
     if user_phone_number is None:
         return None

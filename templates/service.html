@@ -88,7 +88,7 @@
 						<div class="header__block">
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
 						{% if client %}
-							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
+							<img src="{{client_info.image}}" alt="account" class="header__account_img">
 							<a href="{% url 'service:note_page' %}" class="menu__item_link">Личный кабинет</a>
 							<span class="menu__item_link" style="margin-left: 20px"></span>
 							<a href="{% url 'service:logout_user' %}" class="menu__item_link">Выйти</a>
