@@ -36,8 +36,9 @@
 							<nav>
 								<div class="accaunt__left">
 							<div class="accaunt__ava fic">
-								<img src="{% static 'img/avatars/1.svg' %}" alt="avatar" class="accaunt__ava_img">
-								<span class="accaunt__ava_name">Алиса И.</span>
+								<img src="{{client_info.image}}" alt="avatar" class="accaunt__ava_img">
+								<span class="accaunt__ava_name">
+									{{client_info.first_name}} {{client_info.second_name}}</span>
 							</div>
 							<div class="accaunt__settings fic">
 								<a href="" class="accaunt__settings_intro">Изменить профиль</a>
@@ -150,7 +151,9 @@
 					<div class="col-md-2">
 						<div class="accaunt__left">
 							<div class="accaunt__ava fic">
-								<img src="{{client_info.image}}" style="max-height: 70px;" alt="avatar" class="accaunt__ava_img">
+								<img src="{{client_info.image}}" style="max-height: 100px;" alt="avatar" class="accaunt__ava_img">
+							</div>
+							<div class="accaunt__ava fic">
 								<span class="accaunt__ava_name">
 									{{client_info.first_name}} {{client_info.second_name}}</span>
 							</div>
@@ -264,7 +267,7 @@
 								</div>
 							</div>
 							{% endfor %}
-							
+
 						<div class="notes__content notes__content_history">	
 							<div class="notes__main_title">ПРОШЕДШИЕ</div>
 							<div class="notes__main_block">

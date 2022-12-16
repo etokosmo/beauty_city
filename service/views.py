@@ -69,7 +69,7 @@ def servicefinally_page(request, id=3):
     return render(request, 'serviceFinally.html', context=order)
 
 
-def note_page(request, id=3):
+def note_page(request, id=5):
     timeslots = Timeslot.objects.filter(client=id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
     client = User.objects.get(id=id)
