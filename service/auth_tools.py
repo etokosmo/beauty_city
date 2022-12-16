@@ -4,6 +4,7 @@ import hmac
 import json
 from base64 import b64encode, b64decode
 from typing import Optional
+from urllib.parse import unquote
 
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -35,13 +36,15 @@ def get_username_from_signed_string(username_signed: str) -> Optional[str]:
 
 def set_passcode(request):
     response = json.loads(request.body)
-    user_phone_number = response.get('tel')
+    user_phone_number = unquote(response.get('tel'))
+
     if not user_phone_number:
         return render(request, 'index.html')
     user, created = User.objects.get_or_create(
         phone_number=user_phone_number,
-        passcode=7878
     )
+    user.passcode = 7878
+    user.save()
     context = {'client': user}
     response = render(request, 'index.html', context)
     response.set_cookie('user_id', user.pk)
