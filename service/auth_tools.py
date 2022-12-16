@@ -125,3 +125,4 @@ def get_user(request):
         return user
     except User.DoesNotExist:
         return None
+
