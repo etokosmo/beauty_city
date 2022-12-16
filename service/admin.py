@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import ServiceCategory, Salon, Service, Master, User, Timeslot, \
-    Order
+    Order, Comment
 
 
 def get_image_preview(self, obj):
@@ -16,6 +16,12 @@ def get_image_preview(self, obj):
 class ServiceCategoryAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'master',
+    ]
 
 @admin.register(Salon)
 class SalonAdmin(admin.ModelAdmin):
@@ -24,7 +30,15 @@ class SalonAdmin(admin.ModelAdmin):
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    pass
+    get_image_preview = get_image_preview
+
+    list_display = [
+        'title',
+        'get_image_preview',
+    ]
+    readonly_fields = [
+        'get_image_preview',
+    ]
 
 
 @admin.register(Master)

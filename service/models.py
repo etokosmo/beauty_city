@@ -52,6 +52,9 @@ class Service(models.Model):
         related_name='services'
     )
 
+    image = models.ImageField(verbose_name='Аватарка салона', blank=True,
+                              null=True)
+
     class Meta:
         verbose_name = 'Услуга'
         verbose_name_plural = 'Услуги'

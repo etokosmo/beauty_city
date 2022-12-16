@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .auth_tools import get_user
-from .models import Salon, ServiceCategory, Master, Timeslot
+from .models import Salon, ServiceCategory, Master, Timeslot, Service, Comment
 
 
 def service_page(request):
@@ -38,7 +38,55 @@ def service_page(request):
 
 def index_page(request):
     user = get_user(request)
-    context = {'client': user}
+    services = Service.objects.all()
+    salons = Salon.objects.all()
+    masters = Master.objects.all()
+    comments = Comment.objects.all()
+
+    context = {'client':
+        {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': user.image.url
+        },
+        'services': [
+            {
+                'title': service.title,
+                'price': service.price,
+                'image': request.build_absolute_uri(service.image.url),
+            }
+            for service in services],
+
+        'salons': [
+            {
+                'title': salon.title,
+                'address': salon.address,
+                'image': request.build_absolute_uri(salon.image.url),
+            }
+            for salon in salons],
+
+        'masters': [
+            {
+                'first_name': master.first_name,
+                'second_name': master.second_name,
+                'salon': master.salon.title,
+                'service': master.service.all()[0].title,
+                'image': request.build_absolute_uri(
+                    master.image.url),
+                'comments': comments.filter(master=master.id).count(),
+            }
+            for master in masters],
+
+        'comments': [
+            {
+                'user_first_name': comment.user.first_name,
+                'user_second_name': comment.user.second_name,
+                'text': comment.text,
+                'master': comment.master,
+            }
+            for comment in comments],
+
+    }
     return render(request, 'index.html', context)
 
 
