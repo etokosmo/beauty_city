@@ -26,7 +26,8 @@ class Salon(models.Model):
         verbose_name="Адрес салона",
         max_length=200
     )
-    image = models.ImageField(verbose_name='Аватарка салона', blank=True, null=True)
+    image = models.ImageField(verbose_name='Аватарка салона', blank=True,
+                              null=True)
 
     class Meta:
         verbose_name = 'Салон'
@@ -96,14 +97,12 @@ class User(models.Model):
     first_name = models.CharField(
         verbose_name="Имя клиента",
         max_length=200,
-        blank=True,
-        null=True
+        default='undefined'
     )
     second_name = models.CharField(
         verbose_name="Фамилия клиента",
         max_length=200,
-        blank=True,
-        null=True
+        default='username'
     )
     phone_number = PhoneNumberField(
         verbose_name="Номер телефона клиента",
@@ -117,8 +116,7 @@ class User(models.Model):
     )
     image = models.ImageField(
         verbose_name="Аватарка",
-        blank=True,
-        null=True
+        default='acc.svg'
     )
 
     class Meta:
@@ -126,7 +124,7 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return f"{self.first_name}"
+        return f"{self.phone_number}"
 
     def set_passcode(self):
         self.passcode = 7777
@@ -183,6 +181,7 @@ class Order(models.Model):
         default=timezone.now,
         verbose_name='Создан в'
     )
+
     def __str__(self):
         return f"{self.client}-{self.salon}"
 

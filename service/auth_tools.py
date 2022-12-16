@@ -78,3 +78,20 @@ def logout_user(request):
     response = redirect('service:index_page')
     response.delete_cookie('user_phone_number')
     return response
+
+
+def get_user(request):
+    user_phone_number = request.COOKIES.get('user_phone_number')
+    if user_phone_number is None:
+        return None
+
+    valid_user_phone_number = get_username_from_signed_string(
+        user_phone_number)
+
+    if not valid_user_phone_number:
+        return None
+    try:
+        user = User.objects.get(phone_number=valid_user_phone_number)
+        return user
+    except User.DoesNotExist:
+        return None
