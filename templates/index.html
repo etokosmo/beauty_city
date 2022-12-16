@@ -82,8 +82,11 @@
 						<div class="header__block">
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
 						{% if client %}
+							{% if client_info.image %}
+							<img src="{{client_info.image}}" alt="account" class="header__account_img">
+							{% else %}
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
-
+							{% endif %}
 							<a href="{% url 'service:note_page' %}" class="menu__item_link">Личный кабинет</a>
 							<span class="menu__item_link" style="margin-left: 20px"></span>
 							<a href="{% url 'service:logout_user' %}" class="menu__item_link">Выйти</a>
@@ -568,10 +571,10 @@
 		} else {
 			jwt = getCookie('user_phone_number');
 			if (jwt === null) {
-           		setTimeout(() => {  location.reload(true); }, 100);
+           		setTimeout(() => {  location.reload(true); }, 200);
            	} else {
-           	alert('Неправильный код');
-           	setTimeout(() => {  location.reload(true); }, 100);
+<!--           	alert('Неправильный код');-->
+           	setTimeout(() => {  location.reload(true); }, 200);
            	 }
         }
 

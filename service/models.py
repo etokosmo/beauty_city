@@ -104,12 +104,12 @@ class Master(models.Model):
 
 class User(models.Model):
     first_name = models.CharField(
-        verbose_name="Имя клиента",
+        verbose_name="Имя",
         max_length=200,
         default='undefined'
     )
     second_name = models.CharField(
-        verbose_name="Фамилия клиента",
+        verbose_name="Фамилия",
         max_length=200,
         default='username'
     )
