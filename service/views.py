@@ -14,14 +14,20 @@ def service_page(request):
     categories = ServiceCategory.objects.prefetch_related('services')
     masters = Master.objects.all()
     privacy_file = get_object_or_404(Document, title='privacy_polite')
-
+    if user:
+        client_info = {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': user.image.url
+        }
+    else:
+        client_info = {
+            'first_name': 'undefined',
+            'second_name': 'username',
+            'image': None
+        }
     context = {
-        'client_info':
-            {
-                'first_name': user.first_name,
-                'second_name': user.second_name,
-                'image': user.image.url
-            },
+        'client_info': client_info,
         'salons': [
             {
                 'title': salon.title,
@@ -57,13 +63,21 @@ def index_page(request):
     masters = Master.objects.all()
     comments = Comment.objects.all()
 
+    if user:
+        client_info = {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': user.image.url
+        }
+    else:
+        client_info = {
+            'first_name': 'undefined',
+            'second_name': 'username',
+            'image': None
+        }
+
     context = {
-        'client_info':
-            {
-                'first_name': user.first_name,
-                'second_name': user.second_name,
-                'image': user.image.url
-            },
+        'client_info': client_info,
         'privacy_file': privacy_file,
         'client': user,
         'services': [
