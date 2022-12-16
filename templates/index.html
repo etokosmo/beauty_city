@@ -571,10 +571,10 @@
 		} else {
 			jwt = getCookie('user_phone_number');
 			if (jwt === null) {
-           		setTimeout(() => {  location.reload(true); }, 100);
+           		setTimeout(() => {  location.reload(true); }, 200);
            	} else {
-           	alert('Неправильный код');
-           	setTimeout(() => {  location.reload(true); }, 100);
+<!--           	alert('Неправильный код');-->
+           	setTimeout(() => {  location.reload(true); }, 200);
            	 }
         }
 
