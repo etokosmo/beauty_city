@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import ServiceCategory, Salon, Service, Master, User, Timeslot
+from .models import ServiceCategory, Salon, Service, Master, User, Timeslot, Order
 
 
 def get_image_preview(self, obj):
@@ -44,6 +44,7 @@ class UserAdmin(admin.ModelAdmin):
     get_image_preview = get_image_preview
 
     list_display = [
+        'id',
         'first_name',
         'second_name',
         'get_image_preview',
@@ -56,4 +57,18 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Timeslot)
 class TimeslotAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'id',
+        'client',
+        'master',
+        'salon',
+    ]
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'client',
+        'service',
+        'salon',
+    ]

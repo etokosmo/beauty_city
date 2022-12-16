@@ -44,7 +44,7 @@
 									<li class="mobMenu__menu_item"><a href="#" class="mobMenu__menu_link">Контакты</a></li>
 								</ul>
 							</nav>
-							<a href="#" class="mobMenu__account">Личный кабинет</a>
+							<a href="note.html" class="mobMenu__account">Личный кабинет</a>
 						</div>
 					</div>
 					<div class="row">
@@ -83,7 +83,7 @@
 						<a href="tel:+79179023800"><button class="header__block_btn">Перезвоните мне</button></a>
 						{% if user %}
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
-							<div class="menu__item_link">Личный кабинет</div>
+							<li class="menu__item"><a href="note" class="mobMenu__account">Личный кабинет</a></li>
 							<div class="menu__item_link">Выйти</div>
 						{% else %}
 						<div class="header__block_auth">
