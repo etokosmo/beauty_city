@@ -48,12 +48,7 @@ def index_page(request):
 
     context = {
         'privacy_file': privacy_file,
-        'client':
-        {
-            'first_name': user.first_name,
-            'second_name': user.second_name,
-            'image': user.image.url,
-        },
+        'client': user,
         'services': [
             {
                 'title': service.title,
