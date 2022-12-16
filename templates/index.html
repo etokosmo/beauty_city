@@ -557,7 +557,8 @@
         		})
         		.then(r =>  r.json().then(data => ({result: data['result'], jwt: data['user_phone_number']})))
                 .then(obj => setCookie('user_phone_number',obj['jwt']));
-			} return true
+                return true
+			}
 			return false
 		}
 </script>
