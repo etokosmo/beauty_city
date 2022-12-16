@@ -572,6 +572,71 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 45,
+  "fields": {
+    "action_time": "2022-12-15T19:05:09.420Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "2022-12-15:22:04:58-Анджелина-Окрашивание волос",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 46,
+  "fields": {
+    "action_time": "2022-12-16T03:11:56.417Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "2022-12-16:06:11:53-Анджелина-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 47,
+  "fields": {
+    "action_time": "2022-12-16T03:12:15.600Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "2022-12-16:06:12:13-Анджелина-Укладка волос",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 48,
+  "fields": {
+    "action_time": "2022-12-16T03:12:38.371Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "4",
+    "object_repr": "2022-12-16:06:12:34-Сара-Джесика-Свадебный макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 49,
+  "fields": {
+    "action_time": "2022-12-16T04:42:01.599Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "5",
+    "object_repr": "2022-12-17:07:42:00-Анджелина-Педикюр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -1040,11 +1105,47 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Комментарий",
+    "content_type": 14,
+    "codename": "add_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Комментарий",
+    "content_type": 14,
+    "codename": "change_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Комментарий",
+    "content_type": 14,
+    "codename": "delete_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Комментарий",
+    "content_type": 14,
+    "codename": "view_comment"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$390000$YoY0sCiKHPNI9E9iZfXcxu$aHjOvn8YcCZilMXgAOINy02sVZHltlyB3RCn92qt/ZA=",
-    "last_login": "2022-12-14T20:18:17.742Z",
+    "password": "pbkdf2_sha256$320000$fnnbgF7ZNFbh0qofpgIGSB$xX2tqguM9Osqiaj268wFkkcR1X/6SQaae0OpzBMFN9A=",
+    "last_login": "2022-12-15T19:02:27.381Z",
     "is_superuser": true,
     "username": "user",
     "first_name": "",
@@ -1162,11 +1263,43 @@
   }
 },
 {
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "service",
+    "model": "comment"
+  }
+},
+{
   "model": "sessions.session",
   "pk": "3ukwsbjkrjxn2my1q0xgx85824tax4w9",
   "fields": {
     "session_data": ".eJxVjDsOwjAQBe_iGllr409MSZ8zRLvrNQ6gRIqTCnF3iJQC2jcz76UG3NY6bE2WYczqoow6_W6E_JBpB_mO023WPE_rMpLeFX3Qpvs5y_N6uH8HFVv91tGTR3CdNSVByCBR2DAYLl2Ws4sG2QSmxCmCL4XEdRQpJIvWugBevT_jgDfL:1p5WJH:IRGplaSjJAf2cunLu4w480_t9LqR4NbIEkGkOGer1Xw",
     "expire_date": "2022-12-28T18:16:51.345Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "dhocc7syh9tzeqgc2xos0hnxl7vhnpms",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnrz9oOJT1nsNY_HEC2FCcV4u4QKQW0b2bei3na1uq3kRc_J3Zmgp1-t0DxkdsO0p3arfPY27rMge8KP-jg157y83K4fweVRv3WCk1xNhSAAFqqQAKyMxItpILOqlIgoS6EcSI0akrZETjjBEnUVgb2_gDNxzdC:1p5tUx:LVzmLU0LFEDtFaJChIisiFmZLi3PctZARsR4Ro3iwJU",
+    "expire_date": "2022-12-29T19:02:27.391Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lmcef7ed8jf0njc4kft7humhn4qwm8z3",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGllr409MSZ8zRLvrNQ6gRIqTCnF3iJQC2jcz76UG3NY6bE2WYczqoow6_W6E_JBpB_mO023WPE_rMpLeFX3Qpvs5y_N6uH8HFVv91tGTR3CdNSVByCBR2DAYLl2Ws4sG2QSmxCmCL4XEdRQpJIvWugBevT_jgDfL:1p5rMu:J-Ie-qQc_6n6yeJ8UXmmNEQaak2GZUisYMp6_WkYaSE",
+    "expire_date": "2022-12-29T16:46:00.663Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p9pld9r22nv9irgau55vltt5dod7y8m8",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGllr409MSZ8zRLvrNQ6gRIqTCnF3iJQC2jcz76UG3NY6bE2WYczqoow6_W6E_JBpB_mO023WPE_rMpLeFX3Qpvs5y_N6uH8HFVv91tGTR3CdNSVByCBR2DAYLl2Ws4sG2QSmxCmCL4XEdRQpJIvWugBevT_jgDfL:1p5YKT:Ha-Q9hZ8E-nw-nmdYm-N9N1544XAZyH5ZMQ1tUJYJzg",
+    "expire_date": "2022-12-28T20:26:13.476Z"
   }
 },
 {
@@ -1211,7 +1344,8 @@
   "pk": 1,
   "fields": {
     "title": "BeautyCity Пушкинская",
-    "address": "ул. Пушкинская, д. 78А"
+    "address": "ул. Пушкинская, д. 78А",
+    "image": ""
   }
 },
 {
@@ -1219,7 +1353,8 @@
   "pk": 2,
   "fields": {
     "title": "BeautyCity Ленина",
-    "address": "ул. Ленина, д. 211"
+    "address": "ул. Ленина, д. 211",
+    "image": ""
   }
 },
 {
@@ -1227,7 +1362,8 @@
   "pk": 3,
   "fields": {
     "title": "BeautyCity Красная",
-    "address": "ул. Красная, д. 10"
+    "address": "ул. Красная, д. 10",
+    "image": ""
   }
 },
 {
@@ -1537,6 +1673,66 @@
     "phone_number": "+79234566332",
     "passcode": 7777,
     "image": "джоли.jpeg"
+  }
+},
+{
+  "model": "service.timeslot",
+  "pk": 1,
+  "fields": {
+    "client": 5,
+    "master": 1,
+    "service": 1,
+    "salon": 2,
+    "day": "2022-12-15",
+    "time": "22:04:58"
+  }
+},
+{
+  "model": "service.timeslot",
+  "pk": 2,
+  "fields": {
+    "client": 5,
+    "master": 7,
+    "service": 3,
+    "salon": 2,
+    "day": "2022-12-16",
+    "time": "06:11:53"
+  }
+},
+{
+  "model": "service.timeslot",
+  "pk": 3,
+  "fields": {
+    "client": 5,
+    "master": 3,
+    "service": 2,
+    "salon": 1,
+    "day": "2022-12-16",
+    "time": "06:12:13"
+  }
+},
+{
+  "model": "service.timeslot",
+  "pk": 4,
+  "fields": {
+    "client": 3,
+    "master": 13,
+    "service": 7,
+    "salon": 3,
+    "day": "2022-12-16",
+    "time": "06:12:34"
+  }
+},
+{
+  "model": "service.timeslot",
+  "pk": 5,
+  "fields": {
+    "client": 5,
+    "master": 11,
+    "service": 4,
+    "salon": 1,
+    "day": "2022-12-17",
+    "time": "07:42:00"
   }
 }
 ]

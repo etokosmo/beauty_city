@@ -126,7 +126,7 @@ class User(models.Model):
         verbose_name_plural = 'Пользователи'
 
     def __str__(self):
-        return f"{self.phone_number}"
+        return f"{self.first_name}"
 
     def set_passcode(self):
         self.passcode = 7777
@@ -183,6 +183,12 @@ class Order(models.Model):
         default=timezone.now,
         verbose_name='Создан в'
     )
+    def __str__(self):
+        return f"{self.client}-{self.salon}"
+
+    class Meta:
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
 
 
 class Comment(models.Model):
