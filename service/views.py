@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .auth_tools import get_user
@@ -154,3 +156,44 @@ def note_page(request):
     }
 
     return render(request, 'notes.html', context=order)
+
+
+def get_salons(request):
+    salons = Salon.objects.all()
+    data = serializers.serialize('json', salons)
+    return HttpResponse(data, content_type='application/json')
+
+
+def get_categories(request):
+    categories = ServiceCategory.objects.all()
+    if 'salon' in request.GET.keys():
+        salon = request.GET['salon']
+        categories = Salon.objects.filter(title=salon).first().categories.all()
+    data = serializers.serialize('json', categories)
+    return HttpResponse(data, content_type='application/json')
+
+
+def get_services(request):
+    services = Service.objects.all()
+    if 'salon' in request.GET.keys():
+        salon = request.GET['salon']
+        categories = Salon.objects.filter(title=salon).first().categories.all()
+        services = services.filter(category__in=categories)
+    if 'category' in request.GET.keys():
+        category = request.GET['category']
+        services = services.filter(category__title=category)
+    data = serializers.serialize('json', services)
+    return HttpResponse(data, content_type='application/json')
+
+
+def get_masters(request):
+    masters = Master.objects.all()
+    if 'salon' in request.GET.keys():
+        salon = request.GET['salon']
+        masters = masters.filter(salon__title=salon)
+    if 'service' in request.GET.keys():
+        service = request.GET['service']
+        masters_id = Service.objects.filter(title=service).first().masters.values_list('id', flat=True)
+        masters = masters.filter(id__in=masters_id)
+    data = serializers.serialize('json', masters)
+    return HttpResponse(data, content_type='application/json')
