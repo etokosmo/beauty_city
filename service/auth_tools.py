@@ -78,3 +78,6 @@ def logout_user(request):
     response = redirect('service:index_page')
     response.delete_cookie('user_phone_number')
     return response
+
+def account(request):
+    pass
