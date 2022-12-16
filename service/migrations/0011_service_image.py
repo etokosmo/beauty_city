@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('service', '0009_alter_order_options_alter_user_first_name_and_more'),
+        ('service', '0010_document'),
     ]
 
     operations = [
