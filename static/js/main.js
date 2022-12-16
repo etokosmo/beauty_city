@@ -397,7 +397,9 @@ $(document).ready(function() {
 	$('.authPopup__form').submit(function() {
 	    var form_data = $('.authPopup__form').serialize().split('&');
 	    var csrf = form_data[0].split('=')[1]
-	    var tel = form_data[1].split('=')[1]
+	    var tel = decodeURIComponent(form_data[1].split('=')[1])
+	    console.log(tel)
+	    document.getElementById('tel1').innerHTML = tel;
 //	    console.log(csrf);
 //	    console.log(tel);
         fetch('/set_passcode/', {
