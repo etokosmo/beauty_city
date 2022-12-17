@@ -128,17 +128,17 @@
 						<option value="salon2" >Салон 2</option>
 						<option value="salon3" >Салон 3</option>
 					</select> -->
-					<div class="service__form_block service__salons">
-						<button id="choose_salon" class="accordion">(Выберите салон)</button>
-						<div id='salons' class="panel">
-                            {%  for salon in salons %}
-						  <div class="accordion__block fic">
-						  	<div class="accordion__block_intro">{{ salon.title }}</div>
-						  	<div class="accordion__block_address">{{ salon.address }}</div>
-						  </div>
-                         {% endfor %}
-						</div>
-					</div>
+                    <div class="service__form_block service__salons">
+                        <button id="choose_salon" class="accordion">(Выберите салон)</button>
+                        <div id='salons' class="panel">
+                            {% for salon in salons %}
+                                <div class="accordion__block fic">
+                                    <div class="accordion__block_intro">{{ salon.title }}</div>
+                                    <div class="accordion__block_address">{{ salon.address }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
 					<div class="service__form_block service__services">
 						<button id="choose_categories" class="accordion">(Выберите услугу)</button>
 						<div id="categories" class="panel">
@@ -489,8 +489,8 @@ function maskPhone(selector, masked = '7-___-___-__-__') {
   return await response.json();
 }
 
-async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_salons/')
+async function get_salon() {
+    let data = await fetchAsync('/choose_salons/')
 
     console.log(data)
     const el = document.getElementById('salons');
@@ -503,7 +503,7 @@ async function foobar() {
         el.append(div)
     })
 }
-choose_salon.addEventListener("click", foobar);
+{#choose_salon.addEventListener("click", get_salon);#}
 </script>
 <script>
 async function fetchAsync (url) {
@@ -511,7 +511,7 @@ async function fetchAsync (url) {
   return await response.json();
 }
 async function buttonclick() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_services/')
+    let data = await fetchAsync('/choose_services/')
 
     console.log(data)
     const el = document.getElementById(this.id)
@@ -524,8 +524,8 @@ async function buttonclick() {
     })
 }
 
-async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_categories/')
+async function get_category() {
+    let data = await fetchAsync('/choose_categories/')
 
     console.log(data)
     const el = document.getElementById('categories');
@@ -540,18 +540,20 @@ async function foobar() {
         el.append(button)
     })
 }
-choose_categories.addEventListener("click", foobar);
+{#choose_categories.addEventListener("click", get_category);#}
 </script>
 <script>
-    async function fetchAsync (url) {
-  let response = await fetch(url);
+    async function fetchAsync (url, salon) {
+    let new_url = url + '?' + new URLSearchParams({
+    salon: salon
+    })
+  let response = await fetch(new_url);
   return await response.json();
 }
 
-async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_masters/')
-
-    console.log(data)
+async function get_master() {
+    let salon = document.getElementsByName('vasya')
+    let data = await fetchAsync('/choose_masters/', salon)
     const el = document.getElementById('master');
 
     el.innerHTML = ''
@@ -562,7 +564,7 @@ async function foobar() {
         el.append(div)
     })
 }
-choose_master.addEventListener("click", foobar);
+{#choose_master.addEventListener("click", get_master);#}
 </script>
 </body>
 </html>
