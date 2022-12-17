@@ -185,7 +185,8 @@ def note_page(request):
                 'new': True
             }
             orders_params.append(order_item)
-            order_sum += order.service.price
+            if not order.payment:
+                order_sum += order.service.price
         else:
             order_item = {
                 'id': order.id,
