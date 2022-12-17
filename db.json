@@ -1547,6 +1547,71 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2022-12-17T19:40:33.318Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "10",
+    "object_repr": "2022-12-23:22:40:32-+79234566332-Педикюр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2022-12-17T19:46:39.559Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "11",
+    "object_repr": "2022-12-21:22:46:38-+79234566332-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2022-12-17T19:56:40.137Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "12",
+    "object_repr": "2022-12-23:22:56:39-+79234566332-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2022-12-17T19:56:50.757Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "11",
+    "object_repr": "+79234566332-BeautyCity Красная",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 124,
+  "fields": {
+    "action_time": "2022-12-17T19:56:50.764Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "10",
+    "object_repr": "+79234566332-BeautyCity Ленина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -2670,14 +2735,14 @@
 },
 {
   "model": "service.timeslot",
-  "pk": 9,
+  "pk": 12,
   "fields": {
     "client": 5,
-    "master": 4,
-    "service": 4,
+    "master": 9,
+    "service": 3,
     "salon": 2,
-    "day": "2022-12-19",
-    "time": "22:14:50"
+    "day": "2022-12-23",
+    "time": "22:56:39"
   }
 },
 {
@@ -2748,6 +2813,20 @@
     "time": "07:42:00",
     "payment": true,
     "master": 11
+  }
+},
+{
+  "model": "service.order",
+  "pk": 9,
+  "fields": {
+    "client": 5,
+    "service": 4,
+    "salon": 2,
+    "created_at": "2022-12-17T19:18:16.909Z",
+    "day": "2022-12-19",
+    "time": "22:14:50",
+    "payment": false,
+    "master": 4
   }
 },
 {
