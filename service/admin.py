@@ -90,6 +90,7 @@ class OrderAdmin(admin.ModelAdmin):
         'client',
         'service',
         'salon',
+        'payment'
     ]
 
 

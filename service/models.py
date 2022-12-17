@@ -191,6 +191,24 @@ class Order(models.Model):
         verbose_name='Создан в'
     )
 
+    day = models.DateField(
+        verbose_name='Дата записи',
+    )
+
+    time = models.TimeField(
+        verbose_name='Время записи',
+    )
+
+    payment = models.BooleanField(
+        verbose_name='Оплата',
+        default=False
+    )
+
+    master = models.ForeignKey(
+        Master, on_delete=models.CASCADE,
+        verbose_name='Мастер',
+    )
+
     def __str__(self):
         return f"{self.client}-{self.salon}"
 

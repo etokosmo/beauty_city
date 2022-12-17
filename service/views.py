@@ -1,3 +1,6 @@
+import datetime
+
+from django.utils import timezone
 from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -5,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .auth_tools import get_user
 from .forms import UserProfileForm
 from .models import Salon, ServiceCategory, Master, Timeslot, Service, \
-    Document, Comment
+    Document, Comment, Order
 
 
 def service_page(request):
@@ -159,34 +162,61 @@ def note_page(request):
     user = get_user(request)
     if not user:
         return render(request, 'index.html')
-    timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
+    orders = Order.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
+    orders_params = []
+    order_sum = 0
+    for order in orders:
+        if order.day >= datetime.date.today():
+            order_item = {
+                'id': order.id,
+                'master_first_name': order.master.first_name,
+                'master_second_name': order.master.second_name,
+                'master_image': request.build_absolute_uri(
+                    order.master.image.url),
+                'salon': order.salon.title,
+                'salon_address': order.salon.address,
+                'service_title': order.service.title,
+                'service_price': order.service.price,
+                'day': order.day,
+                'time': order.time,
+                'payment': order.payment,
+                'created_at': order.created_at,
+                'new': True
+            }
+            orders_params.append(order_item)
+            order_sum += order.service.price
+        else:
+            order_item = {
+                'id': order.id,
+                'master_first_name': order.master.first_name,
+                'master_second_name': order.master.second_name,
+                'master_image': request.build_absolute_uri(
+                    order.master.image.url),
+                'salon': order.salon.title,
+                'salon_address': order.salon.address,
+                'service_title': order.service.title,
+                'service_price': order.service.price,
+                'day': order.day,
+                'time': order.time,
+                'payment': order.payment,
+                'created_at': order.created_at,
+                'new': False
+            }
+            orders_params.append(order_item)
 
-    order = {
+
+    context = {
         'client_info': {
             'first_name': user.first_name,
             'second_name': user.second_name,
             'image': request.build_absolute_uri(user.image.url)
         },
-        'timeslots': [
-            {
-                'id': timeslot.id,
-                'master_first_name': timeslot.master.first_name,
-                'master_second_name': timeslot.master.second_name,
-                'master_image': request.build_absolute_uri(
-                    timeslot.master.image.url),
-                'salon': timeslot.salon.title,
-                'salon_address': timeslot.salon.address,
-                'service_title': timeslot.service.title,
-                'service_price': timeslot.service.price,
-                'day': timeslot.day,
-                'time': timeslot.time
-            }
-            for timeslot in timeslots],
-
+        'orders': orders_params,
+        'order_sum': order_sum
     }
 
-    return render(request, 'notes.html', context=order)
+    return render(request, 'notes.html', context)
 
 
 def get_salons(request):
@@ -265,3 +295,20 @@ def profile_page(request):
     }
 
     return render(request, 'profile.html', context=context)
+
+# def filling_master(apps, schema_editor):
+#     Timeslot = apps.get_model('service', 'Timeslot')
+#     Order = apps.get_model('service', 'Order')
+#     for timeslot in Timeslot.objects.all().iterator():
+#         order = Order.objects.get(id=timeslot.id)
+#         order.master = timeslot.master
+#         order.save()
+#
+# class Migration(migrations.Migration):
+#
+#     dependencies = [
+#         ('service', '0015_order_master'),
+#     ]
+#
+#     operations = [migrations.RunPython(filling_master)
+#     ]
