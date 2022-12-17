@@ -490,7 +490,7 @@ function maskPhone(selector, masked = '7-___-___-__-__') {
 }
 
 async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_salons/')
+    let data = await fetchAsync('/choose_salons/')
 
     console.log(data)
     const el = document.getElementById('salons');
@@ -511,7 +511,7 @@ async function fetchAsync (url) {
   return await response.json();
 }
 async function buttonclick() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_services/')
+    let data = await fetchAsync('/choose_services/')
 
     console.log(data)
     const el = document.getElementById(this.id)
@@ -525,7 +525,7 @@ async function buttonclick() {
 }
 
 async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_categories/')
+    let data = await fetchAsync('/choose_categories/')
 
     console.log(data)
     const el = document.getElementById('categories');
@@ -549,7 +549,7 @@ choose_categories.addEventListener("click", foobar);
 }
 
 async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/choose_masters/')
+    let data = await fetchAsync('/choose_masters/')
 
     console.log(data)
     const el = document.getElementById('master');
