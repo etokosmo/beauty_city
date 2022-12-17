@@ -557,7 +557,8 @@
         		})
         		.then(r =>  r.json().then(data => ({result: data['result'], jwt: data['user_phone_number']})))
                 .then(obj => setCookie('user_phone_number',obj['jwt']));
-			} return true
+                return true
+			}
 			return false
 		}
 </script>
@@ -566,18 +567,20 @@
 
 	myBtn.addEventListener('click', function(event) {
 		a = check();
+		setTimeout(() => {
+		console.log('qwe');
 		if (a === false) {
 		    alert('Заполните все поля!');
 		} else {
 			jwt = getCookie('user_phone_number');
-			if (jwt === null) {
-           		setTimeout(() => {  location.reload(true); }, 200);
+			let isEmpty = Object.entries(jwt).length === 0;
+			if (isEmpty === true) {
+				alert('Неправильный код');
            	} else {
-<!--           	alert('Неправильный код');-->
-           	setTimeout(() => {  location.reload(true); }, 200);
+				location.reload(true);
            	 }
         }
-
+}, 500)
 
 	});
 </script>

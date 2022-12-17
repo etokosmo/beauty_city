@@ -129,8 +129,8 @@
 						<option value="salon3" >Салон 3</option>
 					</select> -->
 					<div class="service__form_block service__salons">
-						<button class="accordion">(Выберите салон)</button>
-						<div class="panel">
+						<button id="choose_master" class="accordion">(Выберите салон)</button>
+						<div id='salons' class="panel">
                             {%  for salon in salons %}
 						  <div class="accordion__block fic">
 						  	<div class="accordion__block_intro">{{ salon.title }}</div>
@@ -483,6 +483,27 @@ function maskPhone(selector, masked = '7-___-___-__-__') {
 
 }
 
+</script>
+<script>
+    async function fetchAsync (url) {
+  let response = await fetch(url);
+  return await response.json();
+}
+
+async function foobar() {
+    let data = await fetchAsync('http://127.0.0.1:8000/choose_salons/')
+
+    console.log(data)
+    const el = document.getElementById('salons');
+    
+    el.innerHTML = ''
+    data.forEach(function(item, i, data){
+        let div = document.createElement('div');
+        div.innerHTML = '<div class="accordion__block fic"><div class="accordion__block_intro">' + item.fields.title + '</div><div class="accordion__block_address">' + item.fields.address + '</div></div>'
+        el.append(div)
+    })
+}
+choose_master.addEventListener("click", foobar);
 </script>
 </body>
 </html>
