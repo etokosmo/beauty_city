@@ -1352,6 +1352,201 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 105,
+  "fields": {
+    "action_time": "2022-12-17T15:06:59.098Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Пробный",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 106,
+  "fields": {
+    "action_time": "2022-12-17T15:14:03.923Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "Пробный",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 107,
+  "fields": {
+    "action_time": "2022-12-17T15:14:57.750Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Пробный",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 108,
+  "fields": {
+    "action_time": "2022-12-17T16:56:39.057Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "5",
+    "object_repr": "2022-12-17:07:42:00-+79234566332-Педикюр",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2022-12-17T16:56:39.068Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "4",
+    "object_repr": "2022-12-16:06:12:34-+79336577474-Свадебный макияж",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2022-12-17T16:56:39.073Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "3",
+    "object_repr": "2022-12-16:06:12:13-+79234566332-Укладка волос",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2022-12-17T16:56:39.078Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "2",
+    "object_repr": "2022-12-16:06:11:53-+79234566332-Маникюр. Классический",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2022-12-17T16:56:39.084Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "1",
+    "object_repr": "2022-12-15:22:04:58-+79234566332-Окрашивание волос",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2022-12-17T16:57:49.023Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "6",
+    "object_repr": "2022-12-23:19:57:47-+79234566332-Свадебный макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2022-12-17T19:09:42.660Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "7",
+    "object_repr": "2022-12-26:22:09:41-+79234566332-Вечерний макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 115,
+  "fields": {
+    "action_time": "2022-12-17T19:13:26.437Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "7",
+    "object_repr": "+79234566332-BeautyCity Пушкинская",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 116,
+  "fields": {
+    "action_time": "2022-12-17T19:13:26.461Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "6",
+    "object_repr": "+79234566332-BeautyCity Ленина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 117,
+  "fields": {
+    "action_time": "2022-12-17T19:13:55.726Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "8",
+    "object_repr": "2022-12-19:22:13:54-+79234566332-Укладка волос",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 118,
+  "fields": {
+    "action_time": "2022-12-17T19:14:51.040Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "9",
+    "object_repr": "2022-12-19:22:14:50-+79234566332-Педикюр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 119,
+  "fields": {
+    "action_time": "2022-12-17T19:15:05.331Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "8",
+    "object_repr": "+79234566332-BeautyCity Ленина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -2145,6 +2340,18 @@
   }
 },
 {
+  "model": "service.salon",
+  "pk": 5,
+  "fields": {
+    "title": "Пробный",
+    "address": "Брянск, Романа Брянского, 6",
+    "image": "Укладка_волос_oYke1me.jpeg",
+    "categories": [
+      3
+    ]
+  }
+},
+{
   "model": "service.service",
   "pk": 1,
   "fields": {
@@ -2457,68 +2664,20 @@
     "first_name": "Анджелина",
     "second_name": "Джоли",
     "phone_number": "+79234566332",
-    "passcode": 1869,
+    "passcode": 3046,
     "image": "джоли.jpeg"
   }
 },
 {
   "model": "service.timeslot",
-  "pk": 1,
+  "pk": 9,
   "fields": {
     "client": 5,
-    "master": 1,
-    "service": 1,
-    "salon": 2,
-    "day": "2022-12-15",
-    "time": "22:04:58"
-  }
-},
-{
-  "model": "service.timeslot",
-  "pk": 2,
-  "fields": {
-    "client": 5,
-    "master": 7,
-    "service": 3,
-    "salon": 2,
-    "day": "2022-12-16",
-    "time": "06:11:53"
-  }
-},
-{
-  "model": "service.timeslot",
-  "pk": 3,
-  "fields": {
-    "client": 5,
-    "master": 3,
-    "service": 2,
-    "salon": 1,
-    "day": "2022-12-16",
-    "time": "06:12:13"
-  }
-},
-{
-  "model": "service.timeslot",
-  "pk": 4,
-  "fields": {
-    "client": 3,
-    "master": 13,
-    "service": 7,
-    "salon": 3,
-    "day": "2022-12-16",
-    "time": "06:12:34"
-  }
-},
-{
-  "model": "service.timeslot",
-  "pk": 5,
-  "fields": {
-    "client": 5,
-    "master": 11,
+    "master": 4,
     "service": 4,
-    "salon": 1,
-    "day": "2022-12-17",
-    "time": "07:42:00"
+    "salon": 2,
+    "day": "2022-12-19",
+    "time": "22:14:50"
   }
 },
 {
