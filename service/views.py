@@ -21,7 +21,7 @@ def service_page(request):
         client_info = {
             'first_name': user.first_name,
             'second_name': user.second_name,
-            'image': user.image.url
+            'image': request.build_absolute_uri(user.image.url)
         }
     else:
         client_info = {
@@ -35,7 +35,7 @@ def service_page(request):
             {
                 'title': salon.title,
                 'address': salon.address,
-                'image': salon.image
+                'image': request.build_absolute_uri(salon.image.url)
             }
             for salon in salons],
         'categories': [
@@ -48,6 +48,7 @@ def service_page(request):
             {
                 'first_name': master.first_name,
                 'second_name': master.second_name,
+                'image': request.build_absolute_uri(master.image.url)
 
             }
             for master in masters],
@@ -158,6 +159,10 @@ def servicefinally_page(request):
     return render(request, 'serviceFinally.html', context=order)
 
 
+def get_order_date(orders_params):
+    return orders_params['day']
+
+
 def note_page(request):
     user = get_user(request)
     if not user:
@@ -206,14 +211,15 @@ def note_page(request):
             }
             orders_params.append(order_item)
 
-
+    orders_params_sorted = sorted(orders_params,
+                                  key=get_order_date)
     context = {
         'client_info': {
             'first_name': user.first_name,
             'second_name': user.second_name,
             'image': request.build_absolute_uri(user.image.url)
         },
-        'orders': orders_params,
+        'orders': orders_params_sorted,
         'order_sum': order_sum
     }
 
@@ -296,3 +302,22 @@ def profile_page(request):
     }
 
     return render(request, 'profile.html', context=context)
+
+
+def create_order(request):
+    user = get_user(request)
+    timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
+        'master').prefetch_related('service').prefetch_related('salon')
+    for timeslot in timeslots:
+        Order.objects.get_or_create(
+            id=timeslot.id,
+            service=timeslot.service,
+            client=timeslot.client,
+            salon=timeslot.salon,
+            day=timeslot.day,
+            time=timeslot.time,
+            payment=False,
+            master=timeslot.master,
+        )
+    Timeslot.objects.all().delete()
+    return redirect('service:note_page')
