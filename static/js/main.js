@@ -244,10 +244,24 @@ $(document).ready(function() {
 		$('#reviewModal').arcticmodal();
 	})
 	$('.payPopupOpen').click(function(e) {
+
+        var service_price = $(this).attr('value');
+        fetch('/get_order/', {
+          method: 'POST',
+          body: JSON.stringify({"service_price": service_price}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            }
+        })
+        .then(r =>  r.json().then(data => ({price: data['price'], order_id: data['order_id']})))
+                .then(obj => $('#payment-form').append(`<input type="hidden" name="price" value=${obj["price"]}>`) &&
+                $('#payment-form').append(`<input type="hidden" name="order_id" value=${obj["order_id"]}>`))
+
 		e.preventDefault()
 		$('#paymentModal').arcticmodal();
 	})
 	$('.tipsPopupOpen').click(function(e) {
+	    console.log($(this).attr('value'))
 		e.preventDefault()
 		$('#tipsModal').arcticmodal();
 	})

@@ -1,8 +1,10 @@
 import datetime
+import json
 
+from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from django.core import serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .auth_tools import get_user
@@ -303,6 +305,42 @@ def profile_page(request):
 
     return render(request, 'profile.html', context=context)
 
+
+# def filling_master(apps, schema_editor):
+#     Timeslot = apps.get_model('service', 'Timeslot')
+#     Order = apps.get_model('service', 'Order')
+#     for timeslot in Timeslot.objects.all().iterator():
+#         order = Order.objects.get(id=timeslot.id)
+#         order.master = timeslot.master
+#         order.save()
+#
+# class Migration(migrations.Migration):
+#
+#     dependencies = [
+#         ('service', '0015_order_master'),
+#     ]
+#
+#     operations = [migrations.RunPython(filling_master)
+#     ]
+
+
+@csrf_exempt
+def get_order(request):
+    response = json.loads(request.body)['service_price']
+    decoded_response = eval(response)
+    order = {
+        'price': decoded_response.get('service_price'),
+        'order_id': decoded_response.get('id')
+    }
+    return JsonResponse(order)
+
+
+@csrf_exempt
+def get_payment(request):
+    response = request.POST
+    print(response)
+
+    return JsonResponse({'order': 1})
 
 def create_order(request):
     user = get_user(request)
