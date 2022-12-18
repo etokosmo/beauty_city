@@ -260,6 +260,15 @@ $(document).ready(function() {
 		e.preventDefault()
 		$('#paymentModal').arcticmodal();
 	})
+	$('.payPopupOpenFull').click(function(e) {
+	console.log($("body").data("order_sum"))
+	var order_sum = $("body").data("order_sum")
+	var orders_for_pay = $("body").data("orders_for_pay")
+	    $('#payment-form').append(`<input type="hidden" name="price" value=${order_sum}>`);
+        $('#payment-form').append(`<input type="hidden" name="order_id" value=${orders_for_pay}>`);
+		e.preventDefault()
+		$('#paymentModal').arcticmodal();
+	})
 	$('.tipsPopupOpen').click(function(e) {
 //	    console.log($(this).attr('value'))
 		e.preventDefault()

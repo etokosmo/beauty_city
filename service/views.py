@@ -177,6 +177,7 @@ def note_page(request):
         'master').prefetch_related('service').prefetch_related('salon')
     orders_params = []
     order_sum = 0
+    orders_for_pay = []
     for order in orders:
         if order.day >= datetime.date.today():
             order_item = {
@@ -198,6 +199,7 @@ def note_page(request):
             orders_params.append(order_item)
             if not order.payment:
                 order_sum += order.service.price
+                orders_for_pay.append(order.id)
         else:
             order_item = {
                 'id': order.id,
@@ -227,7 +229,8 @@ def note_page(request):
         },
         'orders': orders_params_sorted,
         'order_sum': order_sum,
-        'stripe_public_key': settings.STRIPE_PUBLIC_KEY
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+        'orders_for_pay': orders_for_pay,
     }
     return render(request, 'notes.html', context)
 
@@ -344,6 +347,11 @@ def get_payment(request):
         response = request.POST
         order_id = response.get('order_id')
         try:
+            order_id = int(order_id)
+            order_ids = None
+        except ValueError:
+            order_ids = order_id
+        try:
             price = int(response.get('price'))
             card_number = int(response.get('number').replace(" ", ""))
             card_cvc = int(response.get('cvc'))
@@ -353,18 +361,37 @@ def get_payment(request):
             return redirect('service:note_page')
         card_owner = response.get('fname')
         email = response.get('email')
-
-        order = Order.objects.get(id=order_id)
-        line_items = [{
-            'price_data': {
-                'currency': 'rub',
-                'product_data': {
-                    'name': order.service,
-                },
-                'unit_amount': price * 100,
-            },
-            'quantity': 1,
-        }]
+        line_items = []
+        if order_ids:
+            for order_id in order_ids.split(','):
+                order = get_object_or_404(Order, id=order_id)
+                line_items.append(
+                    {
+                        'price_data': {
+                            'currency': 'rub',
+                            'product_data': {
+                                'name': order.service,
+                            },
+                            'unit_amount': order.service.price * 100,
+                        },
+                        'quantity': 1,
+                    }
+                )
+        else:
+            order = Order.objects.get(id=order_id)
+            reference_id = order.id
+            line_items.append(
+                {
+                    'price_data': {
+                        'currency': 'rub',
+                        'product_data': {
+                            'name': order.service,
+                        },
+                        'unit_amount': price * 100,
+                    },
+                    'quantity': 1,
+                }
+            )
 
         payment = stripe.PaymentMethod.create(
             type="card",
@@ -391,7 +418,7 @@ def get_payment(request):
             line_items=line_items,
             mode='payment',
             customer=customer.id,
-            client_reference_id=order.id,
+            client_reference_id=order_ids if order_ids else reference_id,
             success_url=request.build_absolute_uri(reverse(
                 'service:success')) + "?session_id={CHECKOUT_SESSION_ID}",
             cancel_url=request.build_absolute_uri(reverse('service:cancel')),
@@ -433,12 +460,24 @@ def success(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     session = stripe.checkout.Session.retrieve(session_id)
 
-    order = get_object_or_404(
-        Order,
-        id=session.client_reference_id
-    )
-    order.payment = True
-    order.save()
+    reference_id = session.client_reference_id
+    try:
+        order_id = int(reference_id)
+        order = get_object_or_404(
+            Order,
+            id=order_id
+        )
+        order.payment = True
+        order.save()
+    except ValueError:
+        order_ids = reference_id.split(',')
+        for order_id in order_ids:
+            order = get_object_or_404(
+                Order,
+                id=order_id
+            )
+            order.payment = True
+            order.save()
     return redirect('service:note_page')
 
 
