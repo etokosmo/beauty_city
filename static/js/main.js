@@ -145,27 +145,53 @@ $(document).ready(function() {
 
 	$(document).on('click', '.accordion__block', function(e) {
 		let thisName,thisAddress;
-
 		thisName = $(this).find('> .accordion__block_intro').text()
-		console.log(1232123123123, thisName)
 		thisAddress = $(this).find('> .accordion__block_address').text()
 
 		console.log(thisName)
 
-
-		$.get( "/choose_masters/?salon=" + thisName, function( data ) {
-
-			// console.log(11221, $('.service__masters'))
-			// let foo_html = document.createElement('div');
-			// foo_html.className = "panel";
-			$('.service__masters > .panel').text("")
+		$.get( "/choose_categories/?salon=" + thisName, function( data ) {
+			$('.service__services > .panel').text("")
+			console.log(data)
 			data.forEach(function (item, i, data) {
-				let div = document.createElement('div');
-				div.className = "accordion__block fic";
-				// div.innerHTML = '<div class="accordion__block_intro">' + item.fields.first_name + '333' + '</div><div class="accordion__block_address">"' + item.fields.second_name + '</div>'
-				div.innerHTML = '<div class="accordion__block_elems fic"><img src="img/masters/avatar/lenina/1.svg" alt="avatar" class="accordion__block_img"><div class="accordion__block_master">' + item.fields.first_name + ' ' + item.fields.second_name + '</div></div></div>'
-				// foo_html.append(div);
-				$('.service__masters > .panel').append(div)
+				let button = document.createElement('button');
+
+				button.addEventListener("click", function(e) {
+					e.preventDefault()
+					this.classList.toggle("active");
+					var panel = $(this).next()
+					panel.hasClass('active') ?
+						 panel.removeClass('active')
+						:
+						 panel.addClass('active')
+				  });
+
+				button.className = "accordion";
+				button.innerHTML = item.title
+				let main_div = document.createElement('div');
+				main_div.className = "panel";
+				let block_items_div = document.createElement('div');
+				block_items_div.className = "accordion__block_items";
+				main_div.append(block_items_div)
+				$('.service__services > .panel').append(button).append(main_div)
+				item.services.forEach(function(item, i, services) {
+					let div = document.createElement('div');
+					div.className = "accordion__block_item fic";
+					div.innerHTML = '<div class="accordion__block_item_intro">' + item.title + '</div><div class="accordion__block_item_address">' + item.price + '₽</div>'
+					block_items_div.append(div)
+					div.addEventListener("click", function(e) {
+						console.log(11111222)
+						let thisName,thisAddress;
+						thisName = $(this).find('> .accordion__block_item_intro').text()
+						thisAddress = $(this).find('> .accordion__block_item_address').text()
+						$(this).parent().parent().parent().parent().find('> button.active').addClass('selected').text(thisName + '  ' +thisAddress)
+						// $(this).parent().parent().parent().parent().find('> button.active').click()
+						// $(this).parent().parent().parent().addClass('hide')
+						setTimeout(() => {
+							$(this).parent().parent().parent().parent().find('> button.active').click()
+						}, 200)
+					});
+				})
 			})
 		});
 
@@ -181,6 +207,17 @@ $(document).ready(function() {
 		// $(this).parent().parent().find('.panel').addClass('selected')
 	})
 
+	$(document).on('click', '.service__services', function (e) {
+		$.get("/choose_masters/?salon=" + $('.service__salons > .selected').text().split('  ')[0] + '&service=' + $('.service__services > .selected').text().split('  ')[0], function (data) {
+			$('.service__masters > .panel').text("")
+			data.forEach(function (item, i, data) {
+				let div = document.createElement('div');
+				div.className = "accordion__block fic";
+				div.innerHTML = '<div class="accordion__block_elems fic"><img src="img/masters/avatar/lenina/1.svg" alt="avatar" class="accordion__block_img"><div class="accordion__block_master">' + item.fields.first_name + ' ' + item.fields.second_name + '</div></div></div>'
+				$('.service__masters > .panel').append(div)
+			})
+		});
+	});
 
 	$('.accordion__block_item').click(function(e) {
 		let thisName,thisAddress;

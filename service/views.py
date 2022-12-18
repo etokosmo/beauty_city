@@ -12,6 +12,7 @@ from .auth_tools import get_user
 from .forms import UserProfileForm
 from .models import Salon, ServiceCategory, Master, Timeslot, Service, \
     Document, Comment, Order
+from .serializers import CategorySerializer
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -242,12 +243,13 @@ def get_salons(request):
 
 
 def get_categories(request):
-    categories = ServiceCategory.objects.all()
+    categories = ServiceCategory.objects.all().prefetch_related('services')
     if 'salon' in request.GET.keys():
         salon = request.GET['salon']
-        categories = Salon.objects.filter(title=salon).first().categories.all()
-    data = serializers.serialize('json', categories)
-    return HttpResponse(data, content_type='application/json')
+        categories = Salon.objects.filter(title=salon).first().categories.all().prefetch_related('services')
+
+    serializer = CategorySerializer(categories, many=True)
+    return JsonResponse(serializer.data, safe=False, content_type='application/json')
 
 
 def get_services(request):
@@ -269,9 +271,9 @@ def get_masters(request):
         salon = request.GET['salon']
         masters = masters.filter(salon__title=salon)
     if 'service' in request.GET.keys():
-        service = request.GET['service']
-        masters_id = Service.objects.filter(
-            title=service).first().masters.values_list('id', flat=True)
+        service_title = request.GET['service']
+        service = Service.objects.filter(title=service_title).first()
+        masters_id = service.masters.values_list('id', flat=True) if service else []
         masters = masters.filter(id__in=masters_id)
     data = serializers.serialize('json', masters)
     return HttpResponse(data, content_type='application/json')
