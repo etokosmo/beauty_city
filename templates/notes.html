@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="{% static 'css/jquery.arcticmodal-0.3.css' %}">
 	<link rel="stylesheet" href="{% static 'css/simple.css' %}">
 	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<script src="https://js.stripe.com/v3/"></script>
+
 </head>
 <body class="notesPage">
 	<section id="mobMenu">
@@ -430,8 +432,9 @@
 			<div class="box-modal_close arcticmodal-close"><img src="{% static 'img/x.svg' %}" alt="x"></div>
 			<div class="popup__title paymentPopup__title">Оплата</div>
 			<form action="/get_payment/" class="paymentPopup__form" method="POST" id="payment-form">
+				{% csrf_token %}
 				<div class="paymentPopup__form_intro popup__intro">номер карты</div>
-				<input type="text" name="tel" class="paymentPopup__form_input popup__input" placeholder="Введите номер" required="">
+				<input type="text" name="number" class="paymentPopup__form_input popup__input" placeholder="Введите номер" required="" value="4242424242424242">
 				<div class="paymentPopup__form_block fic">
 					<input type="text" name="mm" class="tipsPopup__form_inputMin popup__input" placeholder="ММ" required="">
 					<input type="text" name="gg" class="tipsPopup__form_inputMin popup__input" placeholder="ГГ" required="">
@@ -441,8 +444,8 @@
 					<input type="text" name="cvc" class="tipsPopup__form_inputMin popup__input" placeholder="CVC" required="">
 				</div>
 				<div class="paymentPopup__form_intro popup__intro">Ваш e-mail(необязательно)</div>
-				<input type="email" name="tel" class="paymentPopup__form_input popup__input" placeholder="pochta@mail.ru">
-				<button class="tipsPopup__btn popup__btn">Оплатить</button>
+				<input type="email" name="email" class="paymentPopup__form_input popup__input" placeholder="pochta@mail.ru">
+				<button class="tipsPopup__btn popup__btn" id="buy-button">Оплатить</button>
 			</form>
 		</div>
 	</div>
@@ -463,7 +466,7 @@
 		<div class="box-modal reviewPopup popup" id="reviewModal">
 			<div class="box-modal_close arcticmodal-close"><img src="{% static 'img/x.svg' %}" alt="x"></div>
 			<div class="popup__title reviewPopup__title">Отзыв</div>
-			<form action="#" class="reviewPopup__form">
+			<form class="reviewPopup__form" id="payment_form">
 				<input type="text" name="fname" class="paymentPopup__form_input popup__input" placeholder="Введите имя" required="">
 				<div class="contacts__form_inputBlock">
 					<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
@@ -483,5 +486,6 @@
 	<script src="{% static 'js/air-datepicker.js' %}"></script>
 	<script src="{% static 'js/jquery.arcticmodal-0.3.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>

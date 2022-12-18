@@ -1,16 +1,19 @@
 import datetime
 import json
 
-from django.views.decorators.csrf import csrf_exempt
-from django.utils import timezone
+import stripe
+from django.conf import settings
 from django.core import serializers
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse, JsonResponse, HttpResponseNotFound
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.views.decorators.csrf import csrf_exempt
 
 from .auth_tools import get_user
 from .forms import UserProfileForm
 from .models import Salon, ServiceCategory, Master, Timeslot, Service, \
     Document, Comment, Order
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def service_page(request):
@@ -222,9 +225,9 @@ def note_page(request):
             'image': request.build_absolute_uri(user.image.url)
         },
         'orders': orders_params_sorted,
-        'order_sum': order_sum
+        'order_sum': order_sum,
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY
     }
-
     return render(request, 'notes.html', context)
 
 
@@ -335,15 +338,74 @@ def get_order(request):
     return JsonResponse(order)
 
 
-@csrf_exempt
 def get_payment(request):
-    response = request.POST
-    print(response)
+    if request.method == 'POST':
+        response = request.POST
+        order_id = response.get('order_id')
+        try:
+            price = int(response.get('price'))
+            card_number = int(response.get('number'))
+            card_cvc = int(response.get('cvc'))
+            card_mm = int(response.get('mm'))
+            card_gg = int(response.get('gg'))
+        except TypeError:
+            return redirect('service:note_page')
+        card_owner = response.get('fname')
+        email = response.get('email')
 
-    return JsonResponse({'order': 1})
+        order = Order.objects.get(id=order_id)
+        line_items = [{
+            'price_data': {
+                'currency': 'rub',
+                'product_data': {
+                    'name': order.service,
+                },
+                'unit_amount': price * 100,
+            },
+            'quantity': 1,
+        }]
+
+        payment = stripe.PaymentMethod.create(
+            type="card",
+            card={
+                "number": card_number,
+                "exp_month": card_mm,
+                "exp_year": card_gg,
+                "cvc": card_cvc,
+            },
+            billing_details={
+                "address": {
+                    "country": 'RU',
+                },
+                "email": email if email else 'a@a.com',
+                "name": card_owner,
+            },
+        )
+        customer = stripe.Customer.create(
+            payment_method=payment.id,
+            email=email if email else 'a@a.com',
+            name=card_owner,
+        )
+        session = stripe.checkout.Session.create(
+            line_items=line_items,
+            mode='payment',
+            customer=customer.id,
+            client_reference_id=order.id,
+            success_url=request.build_absolute_uri(reverse(
+                'service:success')) + "?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=request.build_absolute_uri(reverse('service:cancel')),
+        )
+        context = {
+            'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+            'session_id': session.stripe_id
+        }
+        return render(request, 'stripe.html', context=context)
+
 
 def create_order(request):
     user = get_user(request)
+    if not user:
+        return render(request, 'index.html')
     timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
     for timeslot in timeslots:
@@ -359,3 +421,36 @@ def create_order(request):
         )
     Timeslot.objects.all().delete()
     return redirect('service:note_page')
+
+
+def success(request):
+    session_id = request.GET.get('session_id')
+
+    if session_id is None:
+        return HttpResponseNotFound()
+
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    session = stripe.checkout.Session.retrieve(session_id)
+
+    order = get_object_or_404(
+        Order,
+        id=session.client_reference_id
+    )
+    order.payment = True
+    order.save()
+    return redirect('service:note_page')
+
+
+def cancel(request):
+    user = get_user(request)
+    if not user:
+        return render(request, 'index.html')
+    context = {
+        'client_info': {
+            'first_name': user.first_name,
+            'second_name': user.second_name,
+            'image': request.build_absolute_uri(user.image.url)
+        },
+        'client': user
+    }
+    return render(request, 'cancel.html', context=context)
