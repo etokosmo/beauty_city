@@ -49,11 +49,22 @@ class MasterAdmin(admin.ModelAdmin):
     list_display = [
         'first_name',
         'second_name',
+        'get_salon',
+        'get_service',
         'get_image_preview',
     ]
     readonly_fields = [
         'get_image_preview',
     ]
+
+    def get_salon(self, obj):
+        return obj.salon.title
+
+    def get_service(self, obj):
+        services = []
+        for service in obj.service.all():
+            services.append(service.title)
+        return services
 
 
 @admin.register(User)
