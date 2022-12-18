@@ -83,10 +83,22 @@
 					<div class="col-2 col-md-2 col-lg-3">
 						<div class="header__block">
 						<button class="header__block_btn">Перезвоните мне</button>
+						{% if client %}
+							{% if client_info.image %}
+							<img src="{{client_info.image}}" alt="account" class="header__account_img">
+							{% else %}
+							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
+							{% endif %}
+							<a href="{% url 'service:note_page' %}" class="menu__item_link">Личный кабинет</a>
+							<span class="menu__item_link" style="margin-left: 20px"></span>
+							<a href="{% url 'service:logout_user' %}" class="menu__item_link">Выйти</a>
+
+						{% else %}
 						<div class="header__block_auth">
 							<img src="{% static 'img/acc.svg' %}" alt="account" class="header__account_img">
 							<span class="header__block_auth__intro">Войти</span>
 						</div>
+                            {% endif %}
 					</div>
 					</div>
 				</div>
@@ -240,15 +252,16 @@
 			<div class="box-modal_close arcticmodal-close"><img src="{% static 'img/x.svg' %}" alt="x"></div>
 			<div class="popup__title authPopup__title">Войти по коду</div>
 			<p class="popup__text authPopup__text">Введите свой номер телефона, мы вышлем на него код</p>
-			<form action="#" class="authPopup__form">
+			<form action="" class="authPopup__form">
+				{% csrf_token %}
 				<div class="contacts__form_inputBlock">
-					<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
+					<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7 (999) 999-99-99" required="">
 				</div>
 				<div class="contacts__form_checkboxBlock fic">
-					<input type="checkbox" class="contacts__form_checkbox" checked="">
-					<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с политикой конфидециоальности</span>
+					<input type="checkbox" class="contacts__form_checkbox" checked="" onchange="document.getElementById('submitFF').disabled = !this.checked">
+					<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с <a href="{{privacy_file.file.url}}" target="_blank">политикой конфиденциальности</a></span>
 				</div>
-				<button type="submit" class="popup__btn authPopup__btn">Отправить</button>
+				<button type="submit" class="popup__btn authPopup__btn" id="submitFF">Отправить</button>
 			</form>
 		</div>
 	</div>
@@ -256,13 +269,13 @@
 		<div class="box-modal confirmPopup popup" id="confirmModal">
 			<div class="box-modal_close arcticmodal-close"><img src="{% static 'img/x.svg' %}" alt="x"></div>
 			<div class="popup__title confirmPopup__title">Подтвердите номер</div>
-			<p class="popup__text confirmPopup__text">Введите код, полученный по SMS на номер +7 (928) 164 48 60</p>
+			<p class="popup__text confirmPopup__text">Введите код, полученный по SMS на номер <span id="tel1"></span> </p>
 			<div class="confirmPopup__number">
-				<input type="text" name="num1" class="tipsPopup__form_inputNum popup__input" placeholder="" required="">
-				<input type="text" name="num2" class="tipsPopup__form_inputNum popup__input" placeholder="" required="">
-				<input type="text" name="num3" class="tipsPopup__form_inputNum popup__input" placeholder="" required="">
-				<input type="text" name="num4" class="tipsPopup__form_inputNum popup__input" placeholder="" required="">
-
+				<input type="text" name="num1" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='firstvalue_eventForm(this.value)'>
+				<input type="text" name="num2" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='secondvalue_eventForm(this.value)'>
+				<input type="text" name="num3" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='thirdvalue_eventForm(this.value)'>
+				<input type="text" name="num4" class="tipsPopup__form_inputNum popup__input" placeholder="" required="" onchange='fourthvalue_eventForm(this.value)'>
+				<button id="myButton">Подтвердить</button>
 			</div>
 			<div class="confirmPopup__sms">Если SMS не пришло вы можете <a href="#" class="popup__link">запросить код повторно</a></div>
 			<div class="confirmPopup__changeNumber">
@@ -297,6 +310,129 @@ async function foobar() {
     })
 }
 choose_salon.addEventListener("click", foobar);
+</script>
+	<script>
+	var firstvalue = null;
+	var secondvalue = null;
+	var thirdvalue = null;
+	var fourthvalue = null;
+		function firstvalue_eventForm(value) {
+		  firstvalue = value;
+		}
+		function secondvalue_eventForm(value) {
+		  secondvalue = value;
+		}
+		function thirdvalue_eventForm(value) {
+		  thirdvalue = value;
+		}
+		function fourthvalue_eventForm(value) {
+		  fourthvalue = value;
+
+		}
+
+	</script>
+<script>
+		function check() {
+			if ((!!firstvalue) & (!!secondvalue) & (!!thirdvalue) & (!!fourthvalue)) {
+				var code = firstvalue + secondvalue + thirdvalue + fourthvalue
+				let response = fetch('/verify_user/', {
+				  method: 'POST',
+				  body: JSON.stringify({"passcode": code}),
+				  headers: {
+					'Content-type': 'application/json; charset=UTF-8',
+					'X-CSRFToken': '{{csrf_token}}',
+            		}
+        		})
+        		.then(r =>  r.json().then(data => ({result: data['result'], jwt: data['user_phone_number']})))
+                .then(obj => setCookie('user_phone_number',obj['jwt']));
+                return true
+			}
+			return false
+		}
+</script>
+<script>
+	var myBtn = document.getElementById('myButton');
+
+	myBtn.addEventListener('click', function(event) {
+		a = check();
+		setTimeout(() => {
+		if (a === false) {
+		    alert('Заполните все поля!');
+		} else {
+			jwt = getCookie('user_phone_number');
+			let isEmpty = Object.entries(jwt).length === 0;
+			if (isEmpty === true) {
+				alert('Неправильный код');
+           	} else {
+				location.reload(true);
+           	 }
+        }
+}, 500)
+
+	});
+</script>
+<script>
+    function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+</script>
+<script>
+maskPhone('.contacts__form_iunput');
+function maskPhone(selector, masked = '+7 (___) ___-__-__') {
+	const elems = document.querySelectorAll(selector);
+
+	function mask(event) {
+		const keyCode = event.keyCode;
+		const template = masked,
+			def = template.replace(/\D/g, ""),
+			val = this.value.replace(/\D/g, "");
+		console.log(template);
+		let i = 0,
+			newValue = template.replace(/[_\d]/g, function (a) {
+				return i < val.length ? val.charAt(i++) || def.charAt(i) : a;
+			});
+		i = newValue.indexOf("_");
+		if (i !== -1) {
+			newValue = newValue.slice(0, i);
+		}
+		let reg = template.substr(0, this.value.length).replace(/_+/g,
+			function (a) {
+				return "\\d{1," + a.length + "}";
+			}).replace(/[+()]/g, "\\$&");
+		reg = new RegExp("^" + reg + "$");
+		if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) {
+			this.value = newValue;
+		}
+		if (event.type === "blur" && this.value.length < 5) {
+			this.value = "";
+		}
+
+	}
+
+	for (const elem of elems) {
+		elem.addEventListener("input", mask);
+		elem.addEventListener("focus", mask);
+		elem.addEventListener("blur", mask);
+	}
+
+}
+
 </script>
 </body>
 </html>

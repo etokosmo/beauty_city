@@ -137,6 +137,7 @@ def servicefinally_page(request):
         'master').prefetch_related('service').prefetch_related('salon')
 
     order = {
+        'client': user,
         'client_info':
             {
                 'first_name': user.first_name,
