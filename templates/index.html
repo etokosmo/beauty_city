@@ -546,7 +546,6 @@
 		function check() {
 			if ((!!firstvalue) & (!!secondvalue) & (!!thirdvalue) & (!!fourthvalue)) {
 				var code = firstvalue + secondvalue + thirdvalue + fourthvalue
-				console.log(code)
 				let response = fetch('/verify_user/', {
 				  method: 'POST',
 				  body: JSON.stringify({"passcode": code}),
@@ -568,7 +567,6 @@
 	myBtn.addEventListener('click', function(event) {
 		a = check();
 		setTimeout(() => {
-		console.log('qwe');
 		if (a === false) {
 		    alert('Заполните все поля!');
 		} else {
