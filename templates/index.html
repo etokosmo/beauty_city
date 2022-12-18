@@ -235,11 +235,15 @@
 							</div>
 							<div class="masters__main">
 								<div class="masters__main_speciality">СПЕЦИАЛЬНОСТЬ:</div>
-								<div class="masters__main_intro">{{ master.services }}</div>
+								{% for service in master.services %}
+                  					<h7><span class="masters__main_intro">{{service}}, </span></h7>
+                  				{% endfor %}
 							</div>
 							<div class="masters__main">
 								<div class="masters__main_speciality">САЛОН:</div>
-								<div class="masters__main_intro">{{ master.salons }}</div>
+								{% for salons in master.salons %}
+									<h7><span class="masters__main_intro">{{ salons }}, </span></h7>
+								{% endfor %}
 							</div>
 							<div class="masters__footer fic">
 								<div class="masters__footer_block">

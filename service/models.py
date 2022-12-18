@@ -84,7 +84,6 @@ class Master(models.Model):
     )
     salon = models.ManyToManyField(
         Salon,
-        null=True,
         verbose_name="Салон",
         related_name='masters'
     )
