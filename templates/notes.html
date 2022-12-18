@@ -347,8 +347,11 @@
 					</div>
 					<div class="col-md-12 col-lg-3 dec">
 						<div class="notes__pay">
-							<button class="notes__pay_btn">Оплатить онлайн</button>
+							<button class="notes__pay_btn payPopupOpenFull">Оплатить онлайн</button>
 							<div class="notes__pay_info">Вы можете оплатить услуги прямо сейчас онлайн или расплатиться  в салоне</div>
+							{% for order_for_pay in orders_for_pay %}
+							<div class="notes__pay_info">{{ order_for_pay }}</div>
+							{% endfor %}
 							<div class="notes__pay_intro">Сумма оплаты</div>
 							<div class="notes__pay_sum">{{order_sum}}</div>
 						</div>
@@ -510,6 +513,10 @@ $('.mask-card-code').mask('999');
      this.value = Temp;
 
     };
+</script>
+<script type="text/javascript">
+  $('body').data('order_sum', {{order_sum}});
+  $('body').data('orders_for_pay', {{orders_for_pay}});
 </script>
 </body>
 </html>
