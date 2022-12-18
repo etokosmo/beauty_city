@@ -434,14 +434,14 @@
 			<form action="/get_payment/" class="paymentPopup__form" method="POST" id="payment-form">
 				{% csrf_token %}
 				<div class="paymentPopup__form_intro popup__intro">номер карты</div>
-				<input type="text" name="number" class="paymentPopup__form_input popup__input" placeholder="Введите номер" required="" value="4242424242424242">
+				<input type="text" id="card_number" name="number" class="paymentPopup__form_input popup__input" placeholder="Введите номер" required="">
 				<div class="paymentPopup__form_block fic">
-					<input type="text" name="mm" class="tipsPopup__form_inputMin popup__input" placeholder="ММ" required="">
-					<input type="text" name="gg" class="tipsPopup__form_inputMin popup__input" placeholder="ГГ" required="">
+					<input type="text" name="mm" class="tipsPopup__form_inputMin popup__input mask-card-month" placeholder="ММ" required="">
+					<input type="text" name="gg" class="tipsPopup__form_inputMin popup__input mask-card-year" placeholder="ГГ" required="">
 				</div>
 				<div class="paymentPopup__form_elems fic">
 					<input type="text" name="fname" class="paymentPopup__form_inputMid popup__input" placeholder="Имя владельца" required="">
-					<input type="text" name="cvc" class="tipsPopup__form_inputMin popup__input" placeholder="CVC" required="">
+					<input type="text" name="cvc" class="tipsPopup__form_inputMin popup__input mask-card-code form-control" placeholder="CVC" required="">
 				</div>
 				<div class="paymentPopup__form_intro popup__intro">Ваш e-mail(необязательно)</div>
 				<input type="email" name="email" class="paymentPopup__form_input popup__input" placeholder="pochta@mail.ru">
@@ -486,6 +486,30 @@
 	<script src="{% static 'js/air-datepicker.js' %}"></script>
 	<script src="{% static 'js/jquery.arcticmodal-0.3.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
+	<script src="https://snipp.ru/cdn/maskedinput/jquery.maskedinput.min.js"></script>
+	<script>
+$('.mask-card-month').mask('99');
+$('.mask-card-year').mask('99');
+$('.mask-card-code').mask('999');
+</script>
+<script>
+	bankNum = document.getElementById('card_number');
+	bankNum.addEventListener('input', formatCardCode, false);
 
+    function formatCardCode() {
+
+     let Temp = this.value.replace(/[^\d]/g, '').substring(0,16);
+       if(Temp != ''){
+
+           Temp = Temp.match(/.{1,4}/g);
+           Temp = Temp.join(' ');
+
+       }else{
+
+       }
+     this.value = Temp;
+
+    };
+</script>
 </body>
 </html>

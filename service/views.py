@@ -345,7 +345,7 @@ def get_payment(request):
         order_id = response.get('order_id')
         try:
             price = int(response.get('price'))
-            card_number = int(response.get('number'))
+            card_number = int(response.get('number').replace(" ", ""))
             card_cvc = int(response.get('cvc'))
             card_mm = int(response.get('mm'))
             card_gg = int(response.get('gg'))
