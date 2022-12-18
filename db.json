@@ -1547,6 +1547,552 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2022-12-17T19:40:33.318Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "10",
+    "object_repr": "2022-12-23:22:40:32-+79234566332-Педикюр",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2022-12-17T19:46:39.559Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "11",
+    "object_repr": "2022-12-21:22:46:38-+79234566332-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2022-12-17T19:56:40.137Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "12",
+    "object_repr": "2022-12-23:22:56:39-+79234566332-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2022-12-17T19:56:50.757Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "11",
+    "object_repr": "+79234566332-BeautyCity Красная",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 124,
+  "fields": {
+    "action_time": "2022-12-17T19:56:50.764Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "10",
+    "object_repr": "+79234566332-BeautyCity Ленина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 125,
+  "fields": {
+    "action_time": "2022-12-18T07:50:54.306Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Анжела",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 126,
+  "fields": {
+    "action_time": "2022-12-18T08:43:46.442Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "8",
+    "object_repr": "Вечерний макияж",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 127,
+  "fields": {
+    "action_time": "2022-12-18T08:43:55.224Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "6",
+    "object_repr": "Дневной макияж",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 128,
+  "fields": {
+    "action_time": "2022-12-18T08:45:38.052Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "15",
+    "object_repr": "Анжела",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0421\\u0430\\u043b\\u043e\\u043d\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 129,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.910Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "14",
+    "object_repr": "Калина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 130,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.917Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "13",
+    "object_repr": "Калина",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 131,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.923Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "12",
+    "object_repr": "Елена",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 132,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.929Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "11",
+    "object_repr": "Елена",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 133,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.935Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "10",
+    "object_repr": "Андрей",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 134,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.940Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "9",
+    "object_repr": "Андрей",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 135,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.946Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "8",
+    "object_repr": "Андрей",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 136,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.952Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "7",
+    "object_repr": "Андрей",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 137,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.958Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "6",
+    "object_repr": "Кира",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 138,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.964Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "5",
+    "object_repr": "Кира",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 139,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.968Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "4",
+    "object_repr": "Кира",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 140,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.974Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "3",
+    "object_repr": "Юля",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 141,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.979Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "2",
+    "object_repr": "Юля",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 142,
+  "fields": {
+    "action_time": "2022-12-18T08:46:31.984Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Юля",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 143,
+  "fields": {
+    "action_time": "2022-12-18T08:47:35.841Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "16",
+    "object_repr": "Юля",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 144,
+  "fields": {
+    "action_time": "2022-12-18T08:48:17.642Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "17",
+    "object_repr": "Андрей",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 145,
+  "fields": {
+    "action_time": "2022-12-18T08:48:52.760Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "18",
+    "object_repr": "Кира",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 146,
+  "fields": {
+    "action_time": "2022-12-18T08:49:35.335Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "19",
+    "object_repr": "Калина",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 147,
+  "fields": {
+    "action_time": "2022-12-18T08:50:24.931Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "20",
+    "object_repr": "Елена",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 148,
+  "fields": {
+    "action_time": "2022-12-18T08:53:18.683Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "13",
+    "object_repr": "2022-12-16:11:53:09-+79234566332-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 149,
+  "fields": {
+    "action_time": "2022-12-18T08:53:43.213Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "14",
+    "object_repr": "2022-12-20:11:53:41-+79234566332-Наращивание ногтей",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 150,
+  "fields": {
+    "action_time": "2022-12-18T08:54:23.881Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "15",
+    "object_repr": "2022-12-19:11:54:22-+79234566332-Дневной макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 151,
+  "fields": {
+    "action_time": "2022-12-18T08:55:13.965Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "15",
+    "object_repr": "+79234566332-BeautyCity Красная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 152,
+  "fields": {
+    "action_time": "2022-12-18T08:55:24.389Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "13",
+    "object_repr": "+79234566332-BeautyCity Пушкинская",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 153,
+  "fields": {
+    "action_time": "2022-12-18T08:56:31.801Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "16",
+    "object_repr": "2022-12-15:11:56:30-+79234566332-Наращивание ногтей",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 154,
+  "fields": {
+    "action_time": "2022-12-18T08:57:53.536Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "17",
+    "object_repr": "2022-12-22:11:57:52-+79234566332-Свадебный макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 155,
+  "fields": {
+    "action_time": "2022-12-18T09:02:37.817Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "2022-12-15:12:02:36-+79336577474-Маникюр. Классический",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 156,
+  "fields": {
+    "action_time": "2022-12-18T09:02:58.260Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "19",
+    "object_repr": "2022-12-24:12:02:57-+79336577474-Свадебный макияж",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 157,
+  "fields": {
+    "action_time": "2022-12-18T09:07:29.228Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "Пробный",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0430\\u0442\\u0430\\u0440\\u043a\\u0430 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 158,
+  "fields": {
+    "action_time": "2022-12-18T09:20:17.549Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "4",
+    "object_repr": "+79387655343:Делала процедуру микротоки у мастера Светланы . Светлана внимательная, приветливая, ненавязчивая. Рекомендую и мастера, и процедуру. Еще делала бровки у Татьяны , я в восторге , брови про",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 159,
+  "fields": {
+    "action_time": "2022-12-18T09:20:47.469Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "5",
+    "object_repr": "+79234566332:Была на педикюре у Ольги. Очень понравилось. Все инструменты стерильные, упакованы в крафт-пакет. Для меня очень важно было. Оборудование новое.",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 160,
+  "fields": {
+    "action_time": "2022-12-18T09:21:13.703Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "6",
+    "object_repr": "+79223456789:Сегодня прокололи ушки дочке в этом салоне) Остались довольны обслуживанием и персоналом. Девочки очень приветливые и внимательные . Спасибо большое, всё понравилось)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 161,
+  "fields": {
+    "action_time": "2022-12-18T09:21:44.732Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "7",
+    "object_repr": "+79883455663:Отличный салон, сервис на самом высоком уровне, всем мастерам огромное уважение за труд, обязательно вернусь",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -2345,7 +2891,7 @@
   "fields": {
     "title": "Пробный",
     "address": "Брянск, Романа Брянского, 6",
-    "image": "Укладка_волос_oYke1me.jpeg",
+    "image": "Укладка_волос_JnnYPnu.jpeg",
     "categories": [
       3
     ]
@@ -2408,7 +2954,7 @@
     "title": "Дневной макияж",
     "price": 1400,
     "category": 3,
-    "image": "Дневной_макияж_ERxG9cD.jpeg"
+    "image": "Дневной_макияж.jpeg"
   }
 },
 {
@@ -2428,188 +2974,108 @@
     "title": "Вечерний макияж",
     "price": 2000,
     "category": 3,
-    "image": "вечерний_макияж_JZp20w4.jpeg"
+    "image": "вечерний_макияж.jpeg"
   }
 },
 {
   "model": "service.master",
-  "pk": 1,
+  "pk": 15,
+  "fields": {
+    "first_name": "Анжела",
+    "second_name": "Пробный",
+    "image": "Анжела.jpeg",
+    "service": [
+      5,
+      6,
+      7
+    ],
+    "salon": [
+      2
+    ]
+  }
+},
+{
+  "model": "service.master",
+  "pk": 16,
   "fields": {
     "first_name": "Юля",
     "second_name": "Мастерова",
-    "salon": 1,
     "image": "юля.jpeg",
     "service": [
-      2
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 2,
-  "fields": {
-    "first_name": "Юля",
-    "second_name": "Мастерова",
-    "salon": 2,
-    "image": "юля_QcMDShV.jpeg",
-    "service": [
-      1
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 3,
-  "fields": {
-    "first_name": "Юля",
-    "second_name": "Мастерова",
-    "salon": 3,
-    "image": "юля_TTDh9o3.jpeg",
-    "service": [
-      2
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 4,
-  "fields": {
-    "first_name": "Кира",
-    "second_name": "Многоручка",
-    "salon": 1,
-    "image": "многоручка_zxx5ubr.jpeg",
-    "service": [
+      3,
+      4,
+      5
+    ],
+    "salon": [
+      1,
       3
     ]
   }
 },
 {
   "model": "service.master",
-  "pk": 5,
-  "fields": {
-    "first_name": "Кира",
-    "second_name": "Многоручка",
-    "salon": 2,
-    "image": "многоручка.jpeg",
-    "service": [
-      4
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 6,
-  "fields": {
-    "first_name": "Кира",
-    "second_name": "Многоручка",
-    "salon": 3,
-    "image": "многоручка_Kp253pm.jpeg",
-    "service": [
-      3
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 7,
+  "pk": 17,
   "fields": {
     "first_name": "Андрей",
     "second_name": "Клоун",
-    "salon": 1,
     "image": "клоун.jpeg",
     "service": [
-      6
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 8,
-  "fields": {
-    "first_name": "Андрей",
-    "second_name": "Клоун",
-    "salon": 1,
-    "image": "клоун_D5HBUFt.jpeg",
-    "service": [
-      7
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 9,
-  "fields": {
-    "first_name": "Андрей",
-    "second_name": "Клоун",
-    "salon": 3,
-    "image": "клоун_RshBv14.jpeg",
-    "service": [
+      6,
+      7,
       8
+    ],
+    "salon": [
+      3
     ]
   }
 },
 {
   "model": "service.master",
-  "pk": 10,
+  "pk": 18,
   "fields": {
-    "first_name": "Андрей",
-    "second_name": "Клоун",
-    "salon": 2,
-    "image": "клоун_2Y4Zn7Z.jpeg",
+    "first_name": "Кира",
+    "second_name": "Многоручка",
+    "image": "многоручка.jpeg",
     "service": [
-      7
+      3,
+      4,
+      5
+    ],
+    "salon": [
+      1,
+      2
     ]
   }
 },
 {
   "model": "service.master",
-  "pk": 11,
-  "fields": {
-    "first_name": "Елена",
-    "second_name": "Малифисента",
-    "salon": 1,
-    "image": "малифисента_eu82frT.jpeg",
-    "service": [
-      6
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 12,
-  "fields": {
-    "first_name": "Елена",
-    "second_name": "Малифисента",
-    "salon": 3,
-    "image": "малифисента.jpeg",
-    "service": [
-      8
-    ]
-  }
-},
-{
-  "model": "service.master",
-  "pk": 13,
+  "pk": 19,
   "fields": {
     "first_name": "Калина",
     "second_name": "Красная",
-    "salon": 1,
     "image": "дьявол.jpeg",
     "service": [
+      1,
+      2
+    ],
+    "salon": [
       2
     ]
   }
 },
 {
   "model": "service.master",
-  "pk": 14,
+  "pk": 20,
   "fields": {
-    "first_name": "Калина",
-    "second_name": "Красная",
-    "salon": 3,
-    "image": "дьявол_mwTuror.jpeg",
+    "first_name": "Елена",
+    "second_name": "Малифисента",
+    "image": "малифисента.jpeg",
     "service": [
+      1,
       2
+    ],
+    "salon": [
+      1
     ]
   }
 },
@@ -2642,7 +3108,7 @@
     "first_name": "Сара-Джесика",
     "second_name": "Паркер",
     "phone_number": "+79336577474",
-    "passcode": 7777,
+    "passcode": 9709,
     "image": "джесика_паркер.jpeg"
   }
 },
@@ -2664,117 +3130,114 @@
     "first_name": "Анджелина",
     "second_name": "Джоли",
     "phone_number": "+79234566332",
-    "passcode": 3046,
+    "passcode": 9974,
     "image": "джоли.jpeg"
   }
 },
 {
-  "model": "service.timeslot",
-  "pk": 9,
-  "fields": {
-    "client": 5,
-    "master": 4,
-    "service": 4,
-    "salon": 2,
-    "day": "2022-12-19",
-    "time": "22:14:50"
-  }
-},
-{
   "model": "service.order",
-  "pk": 1,
-  "fields": {
-    "client": 5,
-    "service": 1,
-    "salon": 2,
-    "created_at": "2022-12-17T08:41:22Z",
-    "day": "2022-12-21",
-    "time": "22:04:58",
-    "payment": false,
-    "master": 1
-  }
-},
-{
-  "model": "service.order",
-  "pk": 2,
+  "pk": 13,
   "fields": {
     "client": 5,
     "service": 3,
-    "salon": 2,
-    "created_at": "2022-12-17T08:41:22Z",
+    "salon": 1,
+    "created_at": "2022-12-18T08:54:42Z",
     "day": "2022-12-16",
-    "time": "06:11:53",
-    "payment": false,
-    "master": 7
+    "time": "11:53:09",
+    "payment": true,
+    "master": 16
   }
 },
 {
   "model": "service.order",
-  "pk": 3,
+  "pk": 14,
   "fields": {
     "client": 5,
-    "service": 2,
+    "service": 5,
     "salon": 1,
-    "created_at": "2022-12-17T08:41:22Z",
-    "day": "2022-12-16",
-    "time": "06:12:13",
-    "payment": true,
-    "master": 3
+    "created_at": "2022-12-18T08:54:42.103Z",
+    "day": "2022-12-20",
+    "time": "11:53:41",
+    "payment": false,
+    "master": 16
   }
 },
 {
   "model": "service.order",
+  "pk": 15,
+  "fields": {
+    "client": 5,
+    "service": 6,
+    "salon": 3,
+    "created_at": "2022-12-18T08:54:42Z",
+    "day": "2022-12-19",
+    "time": "11:54:22",
+    "payment": true,
+    "master": 17
+  }
+},
+{
+  "model": "service.order",
+  "pk": 16,
+  "fields": {
+    "client": 5,
+    "service": 5,
+    "salon": 2,
+    "created_at": "2022-12-18T08:56:53.307Z",
+    "day": "2022-12-15",
+    "time": "11:56:30",
+    "payment": false,
+    "master": 18
+  }
+},
+{
+  "model": "service.order",
+  "pk": 17,
+  "fields": {
+    "client": 5,
+    "service": 7,
+    "salon": 5,
+    "created_at": "2022-12-18T08:58:04.911Z",
+    "day": "2022-12-22",
+    "time": "11:57:52",
+    "payment": false,
+    "master": 15
+  }
+},
+{
+  "model": "service.comment",
   "pk": 4,
   "fields": {
-    "client": 3,
-    "service": 7,
-    "salon": 3,
-    "created_at": "2022-12-17T10:22:35Z",
-    "day": "2022-12-21",
-    "time": "06:12:34",
-    "payment": false,
-    "master": 13
+    "user": 4,
+    "text": "Делала процедуру микротоки у мастера Светланы . Светлана внимательная, приветливая, ненавязчивая. Рекомендую и мастера, и процедуру. Еще делала бровки у Татьяны , я в восторге , брови просто идеально сдеданы",
+    "master": 16
   }
 },
 {
-  "model": "service.order",
+  "model": "service.comment",
   "pk": 5,
   "fields": {
-    "client": 5,
-    "service": 4,
-    "salon": 1,
-    "created_at": "2022-12-17T08:41:22Z",
-    "day": "2022-12-20",
-    "time": "07:42:00",
-    "payment": true,
-    "master": 11
+    "user": 5,
+    "text": "Была на педикюре у Ольги. Очень понравилось. Все инструменты стерильные, упакованы в крафт-пакет. Для меня очень важно было. Оборудование новое.",
+    "master": 16
   }
 },
 {
   "model": "service.comment",
-  "pk": 1,
+  "pk": 6,
   "fields": {
-    "user": 3,
-    "text": "Отличное место для красоты, очень доброжелательный и отзывчивый персонал, девочки заботливые, аккуратные и большие профессионалы. Посещаю салон с самого начала, но он не теряет своей привлекательности, как в обслуживании.",
-    "master": 1
+    "user": 1,
+    "text": "Сегодня прокололи ушки дочке в этом салоне) Остались довольны обслуживанием и персоналом. Девочки очень приветливые и внимательные . Спасибо большое, всё понравилось)",
+    "master": 19
   }
 },
 {
   "model": "service.comment",
-  "pk": 2,
+  "pk": 7,
   "fields": {
     "user": 2,
-    "text": "Делала процедуру микротоки у мастера Светланы . Светлана внимательная, приветливая, ненавязчивая. Рекомендую и мастера, и процедуру. Еще делала бровки у Татьяны , я в восторге , брови просто идеально сдеданы",
-    "master": 7
-  }
-},
-{
-  "model": "service.comment",
-  "pk": 3,
-  "fields": {
-    "user": 2,
-    "text": "Мне всё лень было отзыв писать, но вот \"руки дошли\". Несколько раз здесь стриглась, мастера звали, кажется, Катя. Все было отлично, приятная молодая женщина и по стрижке вопросов не было)",
-    "master": 1
+    "text": "Отличный салон, сервис на самом высоком уровне, всем мастерам огромное уважение за труд, обязательно вернусь",
+    "master": 15
   }
 },
 {
