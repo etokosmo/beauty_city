@@ -106,8 +106,8 @@ def index_page(request):
             {
                 'first_name': master.first_name,
                 'second_name': master.second_name,
-                'salon': master.salon.title,
-                'service': master.service.all()[0].title,
+                'salons': [master.title for master in master.salon.all()],
+                'services': [master.title for master in master.service.all()],
                 'image': request.build_absolute_uri(
                     master.image.url),
                 'comments': comments.filter(master=master.id).count(),

@@ -58,7 +58,10 @@ class MasterAdmin(admin.ModelAdmin):
     ]
 
     def get_salon(self, obj):
-        return obj.salon.title
+        salons = []
+        for salon in obj.salon.all():
+            salons.append(salon.title)
+        return salons
 
     def get_service(self, obj):
         services = []

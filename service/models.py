@@ -82,10 +82,10 @@ class Master(models.Model):
         verbose_name="Услуги мастера",
         related_name="masters"
     )
-    salon = models.ForeignKey(
+    salon = models.ManyToManyField(
         Salon,
-        on_delete=models.SET_NULL,
         null=True,
+        verbose_name="Салон",
         related_name='masters'
     )
     image = models.ImageField(
