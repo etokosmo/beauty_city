@@ -310,24 +310,6 @@ def profile_page(request):
     return render(request, 'profile.html', context=context)
 
 
-# def filling_master(apps, schema_editor):
-#     Timeslot = apps.get_model('service', 'Timeslot')
-#     Order = apps.get_model('service', 'Order')
-#     for timeslot in Timeslot.objects.all().iterator():
-#         order = Order.objects.get(id=timeslot.id)
-#         order.master = timeslot.master
-#         order.save()
-#
-# class Migration(migrations.Migration):
-#
-#     dependencies = [
-#         ('service', '0015_order_master'),
-#     ]
-#
-#     operations = [migrations.RunPython(filling_master)
-#     ]
-
-
 @csrf_exempt
 def get_order(request):
     response = json.loads(request.body)['service_price']
