@@ -152,9 +152,10 @@ $(document).ready(function() {
 
 
 	$(document).on('click', '.accordion__block', function(e) {
-		let thisName,thisAddress;
+		let thisName,thisAddress,thisID;
 		thisName = $(this).find('> .accordion__block_intro').text()
 		thisAddress = $(this).find('> .accordion__block_address').text()
+		thisID = $(this).find('> .accordion__block_id').text()
 
 		console.log(thisName)
 
@@ -203,7 +204,7 @@ $(document).ready(function() {
 			})
 		});
 
-		$(this).parent().parent().find('> button.active').addClass('selected').text(thisName + '  ' +thisAddress)
+		$(this).parent().parent().find('> button.active').addClass('selected').text(thisName + '  ' +thisAddress + '  ' + thisID)
 		setTimeout(() => {
 			$(this).parent().parent().find('> button.active').click()
 		}, 200)
@@ -364,8 +365,10 @@ $(document).ready(function() {
 			'day': selectedDate,
 			'time': time
 		}
-		$.post("/servicefinally/", timeslot, function (timeslot) {
-		})
+		console.log($('.service__salons > .selected').text().split('  ')[2])
+		console.log($('.service__services > .selected').text())
+//		$.post("/servicefinally/", timeslot, function (timeslot) {
+//		})
 
 })
 })

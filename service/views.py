@@ -41,20 +41,23 @@ def service_page(request):
             {
                 'title': salon.title,
                 'address': salon.address,
-                'image': request.build_absolute_uri(salon.image.url)
+                'image': request.build_absolute_uri(salon.image.url),
+                'id': salon.id
             }
             for salon in salons],
         'categories': [
             {
                 'title': category.title,
                 'services': category.services.all,
+                'id': category.id,
             }
             for category in categories],
         'masters': [
             {
                 'first_name': master.first_name,
                 'second_name': master.second_name,
-                'image': request.build_absolute_uri(master.image.url)
+                'image': request.build_absolute_uri(master.image.url),
+                'id': master.id
 
             }
             for master in masters],
@@ -134,20 +137,20 @@ def index_page(request):
 def servicefinally_page(request):
     user = get_user(request)
 
-    # response = json.loads(request.body)
-    #
-    # timeslot = Timeslot.objects.create(
-    #     master=response['master'],
-    #     service=response['service'],
-    #     salon=response['salon'],
-    #     day=response['day'],
-    #     time=response['time']
-    # )
+    response = request.POST
+    print(response)
+    timeslot = Timeslot.objects.create(
+        master=response['master'],
+        service=response['service'],
+        salon=response['salon'],
+        day=response['day'],
+        time=response['time']
+    )
 
     timeslot = Timeslot.objects.create(
-        master=Master.objects.get(id=20),
-        service=Service.objects.get(id=2),
-        salon=Salon.objects.get(id=1),
+        master=Master.objects.get(id=response['master']),
+        service=Service.objects.get(id=response['service']),
+        salon=Salon.objects.get(id=response['salon']),
         day=datetime.date(2022, 12, 25),
         time=datetime.time(10, 00)
     )
