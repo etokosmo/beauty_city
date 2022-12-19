@@ -125,7 +125,15 @@ $(document).ready(function() {
 		$('#mobMenu').hide()
 	})
 
-	new AirDatepicker('#datepickerHere')
+	let selectedDate;
+
+	let datePicker = new AirDatepicker('#datepickerHere', {
+		selectedDates: [Date],
+		onSelect({date}) {
+			selectedDate = date.toLocaleDateString('ru');
+		},
+		range: false,
+    })
 
 	var acc = document.getElementsByClassName("accordion");
 	var i;
