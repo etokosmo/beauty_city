@@ -133,15 +133,15 @@ def index_page(request):
 def servicefinally_page(request):
     user = get_user(request)
 
-    response = json.loads(request.body)
-
-    timeslot = Timeslot.objects.create(
-        master=response['master'],
-        service=response['service'],
-        salon=response['salon'],
-        day=response['day'],
-        time=response['time']
-    )
+    # response = json.loads(request.body)
+    #
+    # timeslot = Timeslot.objects.create(
+    #     master=response['master'],
+    #     service=response['service'],
+    #     salon=response['salon'],
+    #     day=response['day'],
+    #     time=response['time']
+    # )
 
     timeslot = Timeslot.objects.create(
         master=Master.objects.get(id=20),
