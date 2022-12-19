@@ -130,6 +130,7 @@ def index_page(request):
     return render(request, 'index.html', context)
 
 
+@csrf_exempt
 def servicefinally_page(request):
     user = get_user(request)
 
@@ -257,9 +258,11 @@ def get_salons(request):
 def get_categories(request):
     categories = ServiceCategory.objects.all().prefetch_related('services')
     if 'salon' in request.GET.keys():
-        salon = request.GET['salon']
-        categories = Salon.objects.filter(
-            title=salon).first().categories.all().prefetch_related('services')
+        salon_title = request.GET['salon']
+        salon = Salon.objects.filter(
+            title=salon_title).first()
+        if salon:
+            categories = salon.categories.all().prefetch_related('services')
 
     serializer = CategorySerializer(categories, many=True)
     return JsonResponse(serializer.data, safe=False,
