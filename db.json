@@ -2093,6 +2093,110 @@
   }
 },
 {
+  "model": "admin.logentry",
+  "pk": 162,
+  "fields": {
+    "action_time": "2022-12-18T15:08:21.764Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "20",
+    "object_repr": "2022-12-17:18:08:20-+79336577474-Укладка волос",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 163,
+  "fields": {
+    "action_time": "2022-12-18T15:09:18.620Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "21",
+    "object_repr": "2022-12-20:18:09:16-+79336577474-Наращивание ногтей",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 164,
+  "fields": {
+    "action_time": "2022-12-18T15:32:52.055Z",
+    "user": 1,
+    "content_type": 13,
+    "object_id": "20",
+    "object_repr": "+79336577474-BeautyCity Ленина",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041e\\u043f\\u043b\\u0430\\u0442\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 165,
+  "fields": {
+    "action_time": "2022-12-18T19:13:10.119Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "BeautyCity Красная",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 166,
+  "fields": {
+    "action_time": "2022-12-18T19:13:18.119Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "BeautyCity Ленина",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 167,
+  "fields": {
+    "action_time": "2022-12-18T19:13:23.758Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "BeautyCity Пушкинская",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 168,
+  "fields": {
+    "action_time": "2022-12-18T19:14:40.715Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "BeautyCity Ленина",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 169,
+  "fields": {
+    "action_time": "2022-12-18T19:14:46.610Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "BeautyCity Пушкинская",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u0430\\u0442\\u0435\\u0433\\u043e\\u0440\\u0438\\u0438 \\u0441\\u0430\\u043b\\u043e\\u043d\\u0430\"]}}]"
+  }
+},
+{
   "model": "auth.permission",
   "pk": 1,
   "fields": {
@@ -2862,7 +2966,11 @@
     "title": "BeautyCity Пушкинская",
     "address": "ул. Пушкинская, д. 78А",
     "image": "Пушкинская.jpeg",
-    "categories": []
+    "categories": [
+      1,
+      2,
+      3
+    ]
   }
 },
 {
@@ -2872,7 +2980,11 @@
     "title": "BeautyCity Ленина",
     "address": "ул. Ленина, д. 211",
     "image": "Ленина.jpeg",
-    "categories": []
+    "categories": [
+      1,
+      2,
+      3
+    ]
   }
 },
 {
@@ -2882,7 +2994,11 @@
     "title": "BeautyCity Красная",
     "address": "ул. Красная, д. 10",
     "image": "Красная.jpeg",
-    "categories": []
+    "categories": [
+      1,
+      2,
+      3
+    ]
   }
 },
 {
@@ -3108,7 +3224,7 @@
     "first_name": "Сара-Джесика",
     "second_name": "Паркер",
     "phone_number": "+79336577474",
-    "passcode": 9709,
+    "passcode": 4779,
     "image": "джесика_паркер.jpeg"
   }
 },
@@ -3130,7 +3246,7 @@
     "first_name": "Анджелина",
     "second_name": "Джоли",
     "phone_number": "+79234566332",
-    "passcode": 9974,
+    "passcode": 3042,
     "image": "джоли.jpeg"
   }
 },
@@ -3202,6 +3318,34 @@
     "time": "11:57:52",
     "payment": false,
     "master": 15
+  }
+},
+{
+  "model": "service.order",
+  "pk": 20,
+  "fields": {
+    "client": 3,
+    "service": 2,
+    "salon": 2,
+    "created_at": "2022-12-18T15:11:27Z",
+    "day": "2022-12-17",
+    "time": "18:08:20",
+    "payment": true,
+    "master": 19
+  }
+},
+{
+  "model": "service.order",
+  "pk": 21,
+  "fields": {
+    "client": 3,
+    "service": 5,
+    "salon": 2,
+    "created_at": "2022-12-18T15:11:27.515Z",
+    "day": "2022-12-20",
+    "time": "18:09:16",
+    "payment": false,
+    "master": 17
   }
 },
 {
