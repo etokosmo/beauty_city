@@ -349,9 +349,6 @@
 						<div class="notes__pay">
 							<button class="notes__pay_btn payPopupOpenFull">Оплатить онлайн</button>
 							<div class="notes__pay_info">Вы можете оплатить услуги прямо сейчас онлайн или расплатиться  в салоне</div>
-							{% for order_for_pay in orders_for_pay %}
-							<div class="notes__pay_info">{{ order_for_pay }}</div>
-							{% endfor %}
 							<div class="notes__pay_intro">Сумма оплаты</div>
 							<div class="notes__pay_sum">{{order_sum}}</div>
 						</div>
