@@ -91,7 +91,6 @@ class UserAdmin(admin.ModelAdmin):
 class TimeslotAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'client',
         'master',
         'salon',
     ]

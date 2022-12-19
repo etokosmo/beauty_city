@@ -140,10 +140,6 @@ class User(models.Model):
 
 
 class Timeslot(models.Model):
-    client = models.ForeignKey(
-        User, on_delete=models.CASCADE,
-        verbose_name='Клиент'
-    )
     master = models.ForeignKey(
         Master, on_delete=models.CASCADE,
         verbose_name='Мастер'
@@ -169,7 +165,7 @@ class Timeslot(models.Model):
         verbose_name_plural = 'Записи'
 
     def __str__(self):
-        return f"{self.day}:{self.time}-{self.client}-{self.service}"
+        return f"{self.day}:{self.time}-{self.service}"
 
 
 class Order(models.Model):
@@ -207,9 +203,13 @@ class Order(models.Model):
         Master, on_delete=models.CASCADE,
         verbose_name='Мастер',
     )
+    description = models.TextField(
+        verbose_name='Вопрос к заказу',
+        blank=True
+    )
 
     def __str__(self):
-        return f"{self.client}-{self.salon}"
+        return f"{self.day}:{self.time}-{self.client}-{self.service}"
 
     class Meta:
         verbose_name = 'Заказ'

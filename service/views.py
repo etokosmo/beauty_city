@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .auth_tools import get_user
 from .forms import UserProfileForm
 from .models import Salon, ServiceCategory, Master, Timeslot, Service, \
-    Document, Comment, Order
+    Document, Comment, Order, User
 from .serializers import CategorySerializer
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -132,20 +132,33 @@ def index_page(request):
 
 def servicefinally_page(request):
     user = get_user(request)
-    if not user:
-        return render(request, 'index.html')
-    timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
-        'master').prefetch_related('service').prefetch_related('salon')
 
-    order = {
+    # response = json.loads(request.body)
+    #
+    # timeslot = Timeslot.objects.create(
+    #     master=response['master'],
+    #     service=response['service'],
+    #     salon=response['salon'],
+    #     day=response['day'],
+    #     time=response['time']
+    # )
+
+    timeslot = Timeslot.objects.create(
+        master=Master.objects.get(id=20),
+        service=Service.objects.get(id=2),
+        salon=Salon.objects.get(id=1),
+        day=datetime.date(2022, 12, 25),
+        time=datetime.time(10, 00)
+    )
+    context = {
         'client': user,
         'client_info':
             {
-                'first_name': user.first_name,
-                'second_name': user.second_name,
-                'image': user.image.url
+                'first_name': user.first_name if user else None,
+                'second_name': user.second_name if user else None,
+                'image': user.image.url if user else None
             },
-        'timeslots': [
+        'timeslot':
             {
                 'id': timeslot.id,
                 'master_first_name': timeslot.master.first_name,
@@ -158,12 +171,11 @@ def servicefinally_page(request):
                 'service_price': timeslot.service.price,
                 'day': timeslot.day,
                 'time': timeslot.time
-            }
-            for timeslot in timeslots],
+            },
 
     }
 
-    return render(request, 'serviceFinally.html', context=order)
+    return render(request, 'serviceFinally.html', context=context)
 
 
 def get_order_date(orders_params):
@@ -173,7 +185,7 @@ def get_order_date(orders_params):
 def note_page(request):
     user = get_user(request)
     if not user:
-        return render(request, 'index.html')
+        return redirect('service:index_page')
     orders = Order.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
     orders_params = []
@@ -246,10 +258,12 @@ def get_categories(request):
     categories = ServiceCategory.objects.all().prefetch_related('services')
     if 'salon' in request.GET.keys():
         salon = request.GET['salon']
-        categories = Salon.objects.filter(title=salon).first().categories.all().prefetch_related('services')
+        categories = Salon.objects.filter(
+            title=salon).first().categories.all().prefetch_related('services')
 
     serializer = CategorySerializer(categories, many=True)
-    return JsonResponse(serializer.data, safe=False, content_type='application/json')
+    return JsonResponse(serializer.data, safe=False,
+                        content_type='application/json')
 
 
 def get_services(request):
@@ -273,7 +287,8 @@ def get_masters(request):
     if 'service' in request.GET.keys():
         service_title = request.GET['service']
         service = Service.objects.filter(title=service_title).first()
-        masters_id = service.masters.values_list('id', flat=True) if service else []
+        masters_id = service.masters.values_list('id',
+                                                 flat=True) if service else []
         masters = masters.filter(id__in=masters_id)
     data = serializers.serialize('json', masters)
     return HttpResponse(data, content_type='application/json')
@@ -282,7 +297,7 @@ def get_masters(request):
 def profile_page(request):
     user = get_user(request)
     if not user:
-        return render(request, 'index.html')
+        return redirect('service:index')
     form = UserProfileForm(
         request.POST or None,
         request.FILES or None,
@@ -415,22 +430,30 @@ def get_payment(request):
 
 
 def create_order(request):
-    user = get_user(request)
-    if not user:
-        return render(request, 'index.html')
-    timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
-        'master').prefetch_related('service').prefetch_related('salon')
-    for timeslot in timeslots:
-        Order.objects.get_or_create(
-            id=timeslot.id,
-            service=timeslot.service,
-            client=timeslot.client,
-            salon=timeslot.salon,
-            day=timeslot.day,
-            time=timeslot.time,
-            payment=False,
-            master=timeslot.master,
-        )
+    response = json.loads(request.body)
+    phone_number = response['user_phone']
+    user, created = User.objects.get_or_create(
+        phone_number=phone_number
+    )
+    if created:
+        user.first_name = response['user_name']
+        user.save()
+    else:
+        if response['user_name']:
+            user.first_name = response['user_name']
+            user.save()
+
+    timeslot = Timeslot.objects.get(id=response['timeslot_id'])
+    Order.objects.create(
+        service=timeslot.service,
+        client=user,
+        salon=timeslot.salon,
+        day=timeslot.day,
+        time=timeslot.time,
+        payment=False,
+        master=timeslot.master,
+        description=response['description']
+    )
     Timeslot.objects.all().delete()
     return redirect('service:note_page')
 
@@ -468,7 +491,7 @@ def success(request):
 def cancel(request):
     user = get_user(request)
     if not user:
-        return render(request, 'index.html')
+        return redirect('service:index')
     context = {
         'client_info': {
             'first_name': user.first_name,

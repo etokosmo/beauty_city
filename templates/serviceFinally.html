@@ -119,8 +119,8 @@
 						<div class="service__block">
 							<h1 class="service__title">Запись на услугу</h1>
 						</div>
-						<form action="#" class="serviceFinally__form">
-							{%  for timeslot in timeslots %}
+						<div class="serviceFinally__form">
+
 							<div class="serviceFinally__form_block">
 								<div class="serviceFinally__form_header fic">
 									<span class="serviceFinally__form_header__number">Запись №{{timeslot.id}}</span>
@@ -148,27 +148,25 @@
 									</div>
 								</div>
 							</div>
-							{% endfor %}
 
+							{% if not client %}
 							<div class="serviceFinally__form_itesm">
 								<div class="contacts__form_block fic">
-									<input type="text" name="fname" class="contacts__form_iunput" placeholder="Введите имя" required="">
+									<input id="user_name" onchange='name_eventForm(this.value)' type="text" name="fname" class="contacts__form_input" placeholder="Введите имя" required="">
 									<div class="contacts__form_inputBlock">
-										<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
+										<input id="user_phone" onchange='phone_eventForm(this.value)' type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
 									</div>
 								</div>
-
-								<textarea name="contactsTextarea" class="contacts__form_textarea" placeholder="Вопрос(необязательно)"></textarea>
+							{% endif %}
+								<textarea name="contactsTextarea" class="contacts__form_textarea" placeholder="Вопрос(необязательно)" onchange='desc_eventForm(this.value)'></textarea>
 								<div class="contacts__form_checkboxBlock fic">
-									<input type="checkbox" class="contacts__form_checkbox" checked="">
+									<input type="checkbox" class="contacts__form_checkbox" checked="" onchange="document.getElementById('get_order').disabled = !this.checked">
 									<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с политикой конфидециоальности</span>
-<!--								<button type="submit" class="serviceFinallys__form_btn">Записаться</button>-->
-<!--								<button type="submit" class="serviceFinallys__form_back">Назад</button>-->
+								<button id="get_order" type="submit" class="serviceFinallys__form_btn">Записаться</button>
+								<button type="submit" class="serviceFinallys__form_back">Назад</button>
 								</div>
-								<a href="../create_order" class="serviceFinallys__form_back">Записаться</a>
-								<a href="../create_order" style="margin-left: 20px; " class="serviceFinallys__form_back">Назад</a>
 							</div>
-						</form>
+						</div>
 					</div>
 					<div class="col-md-12 col-lg-5">
 						<img src="{% static 'img/bannerImg.svg' %}" alt="bannerImg" class="banner__img">
@@ -289,28 +287,6 @@
 	<script src="{% static 'js/jquery.arcticmodal-0.3.min.js' %}"></script>
 	<script src="{% static 'js/main.js' %}"></script>
 
-<script>
-    async function fetchAsync (url) {
-  let response = await fetch(url);
-  return await response.json();
-}
-
-async function foobar() {
-    let data = await fetchAsync('http://127.0.0.1:8000/create_order/')
-
-    console.log(data)
-    const el = document.getElementById('orders');
-
-    el.innerHTML = ''
-    data.forEach(function(item, i, data){
-        let div = document.createElement('div');
-        div.className = "serviceFinally__form_itesm";
-        div.innerHTML = '<div class="accordion__block_intro">' + item.fields.title + '</div><div class="accordion__block_address">' + item.fields.address + '</div>'
-        el.append(div)
-    })
-}
-choose_salon.addEventListener("click", foobar);
-</script>
 	<script>
 	var firstvalue = null;
 	var secondvalue = null;
@@ -433,6 +409,55 @@ function maskPhone(selector, masked = '+7 (___) ___-__-__') {
 
 }
 
+</script>
+<script>
+	if ('{{client}}' == 'None') {
+	var client_from_db = false
+	} else {
+	var client_from_db = true }
+
+	var user_name = ''
+	var user_phone = ''
+	var description = ''
+
+	function name_eventForm(value) {
+	  user_name = value;
+	}
+	function phone_eventForm(value) {
+	  user_phone = value;
+	}
+	function desc_eventForm(value) {
+	  description = value;
+	}
+
+	if (client_from_db == true) {
+		var user_name = '{{client.first_name}}'
+		var user_phone = '{{client.phone_number}}'
+	}
+
+
+	var btn = document.getElementById('get_order');
+	btn.addEventListener('click', function(event) {
+		order = {
+			'timeslot_id': '{{timeslot.id}}',
+			'user_name': user_name,
+			'user_phone': user_phone,
+			'description': description
+		}
+		fetch('/create_order/', {
+		method: 'POST',
+		body: JSON.stringify(order),
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+			'X-CSRFToken': '{{csrf_token}}',
+		},
+		})
+		.then(response => {
+        if (response.redirected) {
+            window.location.href = response.url;
+        }
+    })
+	})
 </script>
 </body>
 </html>
