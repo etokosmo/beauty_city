@@ -186,14 +186,15 @@ $(document).ready(function() {
 				item.services.forEach(function(item, i, services) {
 					let div = document.createElement('div');
 					div.className = "accordion__block_item fic";
-					div.innerHTML = '<div class="accordion__block_item_intro">' + item.title + '</div><div class="accordion__block_item_address">' + item.price + '₽</div>'
+					div.innerHTML = '<div class="accordion__block_item_intro">' + item.title + '</div><div class="accordion__block_item_address">' + item.price + '₽</div>' + '<div style="opacity: 0;" class="accordion__block_item_id">' + item.id + '</div>'
 					block_items_div.append(div)
 					div.addEventListener("click", function(e) {
 						console.log(11111222)
-						let thisName,thisAddress;
+						let thisName,thisAddress,thisID;
 						thisName = $(this).find('> .accordion__block_item_intro').text()
 						thisAddress = $(this).find('> .accordion__block_item_address').text()
-						$(this).parent().parent().parent().parent().find('> button.active').addClass('selected').text(thisName + '  ' +thisAddress)
+						thisID = $(this).find('> .accordion__block_item_id').text()
+						$(this).parent().parent().parent().parent().find('> button.active').addClass('selected').text(thisName + '  ' +thisAddress + '  ' + thisID)
 						// $(this).parent().parent().parent().parent().find('> button.active').click()
 						// $(this).parent().parent().parent().addClass('hide')
 						setTimeout(() => {
@@ -222,7 +223,7 @@ $(document).ready(function() {
 			data.forEach(function (item, i, data) {
 				let div = document.createElement('div');
 				div.className = "accordion__block fic";
-				div.innerHTML = '<div class="accordion__block_elems fic"><img src="img/masters/avatar/lenina/1.svg" alt="avatar" class="accordion__block_img"><div class="accordion__block_master">' + item.fields.first_name + ' ' + item.fields.second_name + '</div></div></div>'
+				div.innerHTML = '<div class="accordion__block_elems fic"><img src="/media/'+ item.fields.image +'" alt="avatar" class="accordion__block_img"><div class="accordion__block_master">' + item.fields.first_name + ' ' + item.fields.second_name + '</div></div></div>' + '<div style="opacity: 0;" class="accordion__block_master_id">' + item.pk + '</div>'
 				$('.service__masters > .panel').append(div)
 			})
 		});
@@ -354,9 +355,9 @@ $(document).ready(function() {
 	})
 
 	$(document).on('click', '.time__btns_next', function() {
-		let master = $('.service__masters > .selected').text().split('  ')[0]
-		let service = $('.service__services > .selected').text().split('  ')[0]
-		let salon = $('.service__salons > .selected').text().split('  ')[0]
+		let master = $('.service__masters > .selected').text().split('  ')[0].replace(/[^+\d]/g, '')
+		let service = $('.service__services > .selected').text().split('  ')[2]
+		let salon = $('.service__salons > .selected').text().split('  ')[2]
 		let time = $('.time__elems_elem > .active').text()
 		let timeslot = {
 			'master': master,
@@ -365,10 +366,21 @@ $(document).ready(function() {
 			'day': selectedDate,
 			'time': time
 		}
-		console.log($('.service__salons > .selected').text().split('  ')[2])
-		console.log($('.service__services > .selected').text())
-//		$.post("/servicefinally/", timeslot, function (timeslot) {
+//		$.post("/servicefinally/", timeslot, function (response) {
 //		})
-
+        $.extend(
+        {
+            redirectPost: function(location, args)
+            {
+                var form = '';
+                $.each( args, function( key, value ) {
+                    value = value.split('"').join('\"')
+                    form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+                });
+                $('<form action="' + location + '" method="POST">' + form + '</form>').appendTo($(document.body)).submit();
+            }
+        });
+		var redirect = '/servicefinally/';
+        $.redirectPost(redirect, timeslot);
 })
 })

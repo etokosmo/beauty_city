@@ -138,21 +138,15 @@ def servicefinally_page(request):
     user = get_user(request)
 
     response = request.POST
-    print(response)
-    timeslot = Timeslot.objects.create(
-        master=response['master'],
-        service=response['service'],
-        salon=response['salon'],
-        day=response['day'],
-        time=response['time']
-    )
+
+    day, month, year = [int(date) for date in response['day'].split('.')]
 
     timeslot = Timeslot.objects.create(
-        master=Master.objects.get(id=response['master']),
-        service=Service.objects.get(id=response['service']),
-        salon=Salon.objects.get(id=response['salon']),
-        day=datetime.date(2022, 12, 25),
-        time=datetime.time(10, 00)
+        master=Master.objects.get(id=int(response['master'])),
+        service=Service.objects.get(id=int(response['service'])),
+        salon=Salon.objects.get(id=int(response['salon'])),
+        day=datetime.date(year, month, day),
+        time=response['time']
     )
     context = {
         'client': user,
