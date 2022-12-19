@@ -165,7 +165,7 @@ class Timeslot(models.Model):
         verbose_name_plural = 'Записи'
 
     def __str__(self):
-        return f"{self.day}:{self.time}-{self.client}-{self.service}"
+        return f"{self.day}:{self.time}-{self.service}"
 
 
 class Order(models.Model):
@@ -209,7 +209,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"{self.client}-{self.salon}"
+        return f"{self.day}:{self.time}-{self.client}-{self.service}"
 
     class Meta:
         verbose_name = 'Заказ'
