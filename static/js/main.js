@@ -125,7 +125,15 @@ $(document).ready(function() {
 		$('#mobMenu').hide()
 	})
 
-	new AirDatepicker('#datepickerHere')
+	let selectedDate;
+
+	let datePicker = new AirDatepicker('#datepickerHere', {
+		selectedDates: [Date],
+		onSelect({date}) {
+			selectedDate = date.toLocaleDateString('ru');
+		},
+		range: false,
+    })
 
 	var acc = document.getElementsByClassName("accordion");
 	var i;
@@ -344,6 +352,20 @@ $(document).ready(function() {
 		}
 	})
 
+	$(document).on('click', '.time__btns_next', function() {
+		let master = $('.service__masters > .selected').text().split('  ')[0]
+		let service = $('.service__services > .selected').text().split('  ')[0]
+		let salon = $('.service__salons > .selected').text().split('  ')[0]
+		let time = $('.time__elems_elem > .active').text()
+		let timeslot = {
+			'master': master,
+			'service': service,
+			'salon': salon,
+			'day': selectedDate,
+			'time': time
+		}
+		$.post("/servicefinally/", timeslot, function (timeslot) {
+		})
 
-
+})
 })
