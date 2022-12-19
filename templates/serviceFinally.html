@@ -149,7 +149,7 @@
 								</div>
 							</div>
 							{% endfor %}
-
+							{% if not client %}
 							<div class="serviceFinally__form_itesm">
 								<div class="contacts__form_block fic">
 									<input type="text" name="fname" class="contacts__form_iunput" placeholder="Введите имя" required="">
@@ -157,16 +157,16 @@
 										<input type="text" name="tel" class="contacts__form_iunput" placeholder="+7(999)999--99-99" required="">
 									</div>
 								</div>
-
+							{% endif %}
 								<textarea name="contactsTextarea" class="contacts__form_textarea" placeholder="Вопрос(необязательно)"></textarea>
 								<div class="contacts__form_checkboxBlock fic">
 									<input type="checkbox" class="contacts__form_checkbox" checked="">
 									<span class="contacts__form_checkboxBlock__intro">Я согласен(а) с политикой конфидециоальности</span>
-<!--								<button type="submit" class="serviceFinallys__form_btn">Записаться</button>-->
-<!--								<button type="submit" class="serviceFinallys__form_back">Назад</button>-->
+								<button type="submit" class="serviceFinallys__form_btn">Записаться</button>
+								<button type="submit" class="serviceFinallys__form_back">Назад</button>
 								</div>
-								<a href="../create_order" class="serviceFinallys__form_back">Записаться</a>
-								<a href="../create_order" style="margin-left: 20px; " class="serviceFinallys__form_back">Назад</a>
+<!--								<a href="../create_order" class="serviceFinallys__form_back">Записаться</a>-->
+<!--								<a href="../create_order" style="margin-left: 20px; " class="serviceFinallys__form_back">Назад</a>-->
 							</div>
 						</form>
 					</div>

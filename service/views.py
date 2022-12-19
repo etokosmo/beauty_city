@@ -137,6 +137,10 @@ def servicefinally_page(request):
     timeslots = Timeslot.objects.filter(client=user.id).prefetch_related(
         'master').prefetch_related('service').prefetch_related('salon')
 
+    timeslot = Timeslot.objects.create(
+
+    )
+
     order = {
         'client': user,
         'client_info':
