@@ -353,7 +353,7 @@ def get_payment(request):
         try:
             price = int(response.get('price'))
             card_number = int(response.get('number').replace(" ", ""))
-            card_cvc = int(response.get('cvc'))
+            card_cvc = response.get('cvc')
             card_mm = int(response.get('mm'))
             card_gg = int(response.get('gg'))
         except TypeError:
