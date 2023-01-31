@@ -3,7 +3,7 @@ from django.urls import path
 from .auth_tools import set_passcode, verify_user, logout_user
 from .views import service_page, index_page, note_page, servicefinally_page, \
     get_masters, get_services, get_categories, get_salons, profile_page, \
-    get_order, get_payment, create_order, success, cancel
+    get_order, get_payment, create_order, success, cancel, encode_username
 
 app_name = "service"
 
@@ -25,4 +25,5 @@ urlpatterns = [
     path('create_order/', create_order, name="create_order"),
     path('success/', success, name="success"),
     path('cancel/', cancel, name="cancel"),
+    path('username/<str:username>/', encode_username, name="username"),
 ]

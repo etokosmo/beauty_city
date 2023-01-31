@@ -501,3 +501,13 @@ def cancel(request):
         'client': user
     }
     return render(request, 'cancel.html', context=context)
+
+
+def encode_username(request, username):
+    import jwt
+    encoded_jwt = jwt.encode(
+        {"dvmn_username": username},
+        "SETUP_ME",
+        algorithm="HS256"
+    )
+    return HttpResponse(encoded_jwt)
